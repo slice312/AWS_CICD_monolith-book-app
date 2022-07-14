@@ -1,0 +1,50 @@
+{
+  "name": "zeon-modules-2.1_bookapp",
+  "version": "1.0.0",
+  "description": "CRUD book app",
+  "author": "slice312",
+  "license": "MIT",
+  "private": true,
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "keywords": [
+    "vanilla",
+    "crud",
+    "multi-pages",
+    "web-components",
+    "lwc"
+  ],
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.config.js --mode=development --open",
+    "build": "webpack --config webpack.config.js --mode=development",
+    "lint": "eslint . --ext .js"
+  },
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "eslint": "^8.19.0",
+    "eslint-plugin-import": "^2.26.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "postcss": "^8.4.14",
+    "postcss-loader": "^7.0.1",
+    "postcss-preset-env": "^7.7.2",
+    "sass": "^1.53.0",
+    "sass-loader": "^13.0.2",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.5",
+    "dayjs": "^1.11.3",
+    "sweetalert2": "^11.4.22"
+  }
+}

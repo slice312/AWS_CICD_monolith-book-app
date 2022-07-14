@@ -1,0 +1,13 @@
+@mixin font-face($fontFamily, $weight, $size, $lineHeight, $color) {
+    font-family: $fontFamily;
+    font-weight: $weight;
+    font-size: $size;
+    line-height: $lineHeight;
+    color: $color;
+    font-style: normal;
+}
+
+
+@mixin font-default($weight, $size, $lineHeight, $color) {
+    @include font-face("Poppins", $weight, $size, $lineHeight, $color);
+}
