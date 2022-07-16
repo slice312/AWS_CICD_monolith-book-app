@@ -4,21 +4,46 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 
+
+/*
+  TODO: пока в тупую сделал сборку всех страниц,
+   надо будет написать функцию, собирать все .html файлы в /src/pages
+ */
+
 const commonConfig = {
-    entry: "./src/index.js",
-    output: {
-        filename: "bundle.[contenthash].js",
-        path: path.resolve(__dirname, "./build"),
-        clean: true
+    entry: {
+        // "./src/index.js",
+        login: "./src/pages/login/index.js",
+        register: "./src/pages/register/index.js"
     },
+
+    // output: {
+    //     path: path.resolve(__dirname, "build"),
+    //     // filename: "[name]-[chunkhash].js",
+    //     filename: "[name].js",
+    //     chunkFilename: "[chunkhash].js"
+    // },
+    // output: {
+    //     filename: "bundle.[contenthash].js",
+    //     path: path.resolve(__dirname, "./build"),
+    //     clean: true
+    // },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./src/index.html",
+            template: "./src/pages/login/index.html",
+            filename: "login.html",
+            chunks: ["login"],
+            inject: "body"
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/pages/register/index.html",
+            filename: "register.html",
+            chunks: ["register"],
             inject: "body"
         }),
         new MiniCssExtractPlugin({
             filename: "index.css" // TODO: для дев сервера кеш здесь не рабтает
-        }),
+        })
     ],
     module: {
         rules: [
@@ -72,10 +97,10 @@ const devConfig = {
         static: "./build",
         hot: true,
         historyApiFallback: true,
-        watchFiles: [
-            "./src/index.html"
+        watchFiles: [ // TODO: fix it
+            // "./src/index.html"
         ]
-    },
+    }
 };
 
 
