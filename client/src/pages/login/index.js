@@ -1,8 +1,9 @@
-import "/src/index";
+import {doo} from "/src/index";
 import Swal from "sweetalert2";
 import {Api} from "/src/api";
 
 
+doo();
 
 const app = () => {
     const loginForm = document.getElementById("login-form");
