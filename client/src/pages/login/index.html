@@ -9,17 +9,23 @@
 <body>
 <div class="login-page">
     <div class="container login-page__container">
-        <form class="login-form" id="login-form">
-            <h2 class="login-form__title">
-                Login Form
+        <form class="default-form login-form" id="login-form">
+            <h2 class="default-form__title">
+                Login
             </h2>
-            <label>
-                <input class="login-form__input" type="text" name="username" required placeholder="login">
-            </label>
-            <label>
-                <input class="login-form__input" type="password" name="password" required placeholder="password">
-            </label>
-            <button class="btn-default login-form__btn-login" type="submit">
+            <div class="default-form__field">
+
+                <label>
+                    <input class="default-form__input" type="text" name="username" required placeholder="Login">
+                </label>
+            </div>
+            <div class="default-form__field">
+
+                <label>
+                    <input class="default-form__input" type="password" name="password" required placeholder="Password">
+                </label>
+            </div>
+            <button class="btn-default default-form__btn-submit" type="submit">
                 Login
             </button>
             <a class="login-form__link" href="./register.html">

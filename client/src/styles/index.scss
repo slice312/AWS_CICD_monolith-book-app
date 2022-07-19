@@ -3,8 +3,11 @@
 @import "./mixins";
 @import "./buttons";
 @import "./loader";
+@import "./forms";
+@import "./common";
 
 @import "/src/pages/login";
+@import "/src/pages/register";
 
 .container {
     max-width: 1440px;

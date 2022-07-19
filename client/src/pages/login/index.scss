@@ -5,68 +5,25 @@
     justify-content: center;
     align-items: center;
     background-color: $color-bg-main;
+}
 
-    &__alert-btn {
-        width: 80px;
-        padding: 5px 0;
-        font-size: 20px;
-        line-height: 30px;
+
+.login-form {
+    padding: 60px 50px;
+
+    .default-form__field {
+        width: 300px;
     }
 
-    &__alert-text {
-        font: inherit;
-        font-size: 25px;
-        @include font-default(400, 20px, auto, black);
+    &__link {
+        margin-top: 20px;
+        color: blue;
+        cursor: pointer;
+        font-size: 18px;
 
-    }
-
-    .login-form {
-        max-width: 400px;
-        height: 400px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 70px 50px;
-        border-radius: 10px;
-        background-color: white;
-
-        @include font-default(400, 15px, auto, black);
-
-        &__title {
-            font-weight: 700;
-            font-size: 20px;
-            line-height: 30px;
-        }
-
-        &__input {
-            background: #FFFFFF;
-            border: 1px solid #B1B1B1;
-            border-radius: 12px;
-            font-size: 20px;
-            line-height: 30px;
-            padding: 5px 20px;
-
-            &::placeholder {
-                color: #B1B1B1;
-            }
-        }
-
-        &__btn-login {
-            padding: 5px 0;
-            font-size: 20px;
-            line-height: 30px;
-        }
-
-        &__link {
+        &:hover {
+            text-decoration: underline;
             color: blue;
-            cursor: pointer;
-            font-size: 18px;
-
-            &:hover {
-                text-decoration: underline;
-                color: blue;
-            }
         }
     }
 }
-

@@ -1,0 +1,15 @@
+.app-alert {
+    .alert-btn {
+        width: 80px;
+        padding: 5px 0;
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .alert-text {
+        font: inherit;
+        font-size: 25px;
+        @include font-default(400, 20px, auto, black);
+    }
+}
+

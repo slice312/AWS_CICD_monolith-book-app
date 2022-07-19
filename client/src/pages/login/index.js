@@ -31,12 +31,15 @@ const app = () => {
 
 const showError = (err) => {
     void Swal.fire({
+        customClass: {
+            container: "app-alert"
+        },
         html:
-            `<p class="login-page__alert-text">${err.message}</p>`,
+            `<p class="alert-text">${err.message}</p>`,
         icon: "error",
         buttonsStyling: false,
         confirmButtonText:
-            `<button class = "btn-default login-page__alert-btn">OK</button>`
+            `<button class = "btn-default alert-btn">OK</button>`
     });
 };
 
@@ -53,9 +56,3 @@ const hideLoader = () => {
 
 
 window.addEventListener("DOMContentLoaded", app);
-
-
-
-
-
-

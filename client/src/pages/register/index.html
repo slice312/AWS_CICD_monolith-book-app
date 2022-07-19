@@ -4,27 +4,52 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Books</title>
+    <title>Books App</title>
 </head>
 <body>
-<div class="login-page">
-    <div class="container login-page__container">
-        <form class="login-form" id="register-form">
-            <h2 class="login-form__title">
-                Register Form
+<div class="register-page">
+    <div class="container register-page__container">
+        <form class="default-form register-form" id="register-form">
+            <h2 class="default-form__title">
+                Register
             </h2>
-            <label>
-                <input class="login-form__input" type="text" name="username" required placeholder="login">
-            </label>
-            <label>
-                <input class="login-form__input" type="password" name="password" required placeholder="password">
-            </label>
-            <button class="login-form__btn-login" type="submit">
-                Login
+            <div class="default-form__field">
+                <label>
+                    Login
+                    <input class="default-form__input" type="text" name="username" required placeholder="Login">
+                </label>
+            </div>
+            <div class="default-form__field">
+                <label>
+                    Password
+                    <input class="default-form__input" type="password" name="password" required placeholder="Password">
+                </label>
+            </div>
+            <div class="default-form__field">
+                <label>
+                    <input class="default-form__input" type="password" name="repeatPassword" required
+                           placeholder="Repeat password">
+                </label>
+            </div>
+            <div class="default-form__field">
+                <label>
+                    First name
+                    <input class="default-form__input" type="text" name="firstName" required placeholder="First name">
+                </label>
+            </div>
+            <div class="default-form__field">
+                <label>
+                    Age
+                    <input class="default-form__input" type="number" name="age" required placeholder="Age">
+                </label>
+            </div>
+            <button class="btn-default default-form__btn-submit" type="submit">
+                Register
             </button>
-            <a class="login-form__link-register" href="./register">Register</a>
         </form>
     </div>
+</div>
+<div id="loader" class="loader">
 </div>
 </body>
 </html>

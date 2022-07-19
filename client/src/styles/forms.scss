@@ -1,0 +1,47 @@
+.default-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white;
+    @include font-default(400, 15px, auto, black);
+
+    &__title {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    &__field {
+        width: 350px;
+
+        input {
+            margin-top: 3px;
+            width: 100%;
+            padding: 5px 20px;
+            background: #FFFFFF;
+            border: 1px solid #B1B1B1;
+            border-radius: 5px;
+            font-size: 20px;
+            line-height: 30px;
+
+            &::placeholder {
+                color: #B1B1B1;
+            }
+        }
+
+        label {
+            width: 100%;
+            font-size: 17px;
+        }
+    }
+
+    &__btn-submit {
+        margin-top: 10px;
+        padding: 5px 0;
+        font-size: 20px;
+        line-height: 30px;
+    }
+}

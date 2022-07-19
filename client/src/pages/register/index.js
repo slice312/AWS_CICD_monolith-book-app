@@ -1,10 +1,10 @@
-import "/src/index";
-import Swal from "sweetalert2";
-import {Api} from "/src/api";
+import {baseInit} from "/src/index";
 
 
 
 const app = () => {
+    baseInit();
+
     const loginForm = document.getElementById("register-form");
 
     loginForm.onsubmit = async (e) => {
@@ -25,13 +25,13 @@ const app = () => {
 };
 
 const showError = (err) => {
-    Swal.fire({
-        title: 'Error!',
-        text: err,
-        icon: 'error',
-        confirmButtonText: 'Cool',
-        confirmButtonColor: "#287F9A"
-    });
+    // Swal.fire({
+    //     title: 'Error!',
+    //     text: err,
+    //     icon: 'error',
+    //     confirmButtonText: 'Cool',
+    //     confirmButtonColor: "#287F9A"
+    // });
 
 };
 
