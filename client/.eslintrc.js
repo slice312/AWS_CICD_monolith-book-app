@@ -21,7 +21,7 @@ module.exports = {
 
         /* literals */
         "prefer-regex-literals": "warn",
-        "quotes": ["warn", "double"],
+        "quotes": ["warn", "double", {allowTemplateLiterals: true}],
 
         /* imports */
         "import/no-relative-parent-imports": "error",

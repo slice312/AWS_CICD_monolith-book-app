@@ -14,7 +14,7 @@ db.defaults(defaultData).write()
 
 app.use(express.json()) 
 
-// app.use((req, res, next) => setTimeout(next, 3000));
+app.use((req, res, next) => setTimeout(next, 0)); // TODO: задержка для тестов
 app.get('/me', auth.me)
 app.post('/login', auth.login)
 app.post('/signin', auth.signin)

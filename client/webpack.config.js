@@ -13,7 +13,8 @@ const commonConfig = {
     entry: {
         // "./src/index.js",
         login: "./src/pages/login/index.js",
-        register: "./src/pages/register/index.js"
+        register: "./src/pages/register/index.js",
+        books: "./src/pages/books/index.js"
     },
     output: {
         filename: "[name].js",
@@ -38,6 +39,12 @@ const commonConfig = {
             template: "./src/pages/register/index.html",
             filename: "register.html",
             chunks: ["register"],
+            inject: "body"
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/pages/books/index.html",
+            filename: "books.html",
+            chunks: ["books"],
             inject: "body"
         }),
         new MiniCssExtractPlugin({
