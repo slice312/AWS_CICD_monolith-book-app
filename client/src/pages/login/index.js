@@ -1,6 +1,7 @@
 import {Api} from "/src/shared/api";
 import {baseInit} from "/src/index";
 import {Alerts} from "/src/shared/ui";
+import {Constants} from "/src/shared/constants";
 
 
 
@@ -18,7 +19,7 @@ const app = () => {
 
         try {
             const userData = await Api.login(username, password);
-            window.localStorage.setItem("userToken", userData.token);
+            window.localStorage.setItem(Constants.USER_TOKEN_LS_KEY, userData.token);
             console.log("login", userData);
             window.location.href = "./books.html";
         } catch (err) {

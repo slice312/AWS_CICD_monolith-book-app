@@ -11,6 +11,28 @@ import {httpInstance} from "./httpInstance";
 
 
 /**
+ * @param {string} authToken
+ * @returns {Promise<*>}
+ */
+const me = async (authToken) => {
+    try {
+        const response = await httpInstance.get("me", {
+            "X-Auth": authToken
+        });
+
+        if (response.status === 200)
+            return await response.json();
+        if (response.status === 403)
+            throw new Error("Incorrect login or password");
+        await handleErrorStatuses(response);
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+};
+
+
+/**
  * @param {string} username
  * @param {string} password
  * @returns {Promise<*>}
@@ -61,7 +83,11 @@ const register = async (user) => {
 };
 
 
+
+
+
 export const Api = {
+    me,
     login,
     register
 };
