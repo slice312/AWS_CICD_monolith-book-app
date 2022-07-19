@@ -1,0 +1,124 @@
+.books-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    //align-items: center;
+    background-color: $color-bg-main;
+    @include font-default(400, 15px, auto, black);
+
+
+    &__container {
+        width: 100%;
+    }
+
+    &__title {
+        margin-top: 25px;
+        font-size: 44px;
+        line-height: 66px;
+        text-align: center;
+    }
+
+    .nav-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 64px;
+        padding: 24px 56px;
+
+        &__user-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+        }
+
+        &__user-avatar {
+            height: 32px;
+            width: 32px;
+            display: inline-block;
+            background-color: $color-element-main;
+            border-radius: 50%;
+        }
+
+        &__user-name {
+            font-size: 18px;
+            line-height: 27px;
+        }
+
+        &__link {
+            color: $color-element-main;
+            font-size: 18px;
+            line-height: 27px;
+            text-decoration-line: underline;
+            cursor: pointer;
+
+            &:hover {
+                color: #80B1C9;
+            }
+        }
+    }
+
+    .book-list {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 50px;
+        padding: 60px 50px;
+
+        .book-card {
+            width: 440px;
+            height: 180px;
+            padding: 28px 32px;
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            background-color: white;
+            border-radius: 10px;
+
+            &__title {
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 30px;
+            }
+
+            &__author {
+                margin-top: 10px;
+                font-size: 17px;
+                line-height: 24px;
+            }
+
+            &__buttons {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            &__btn {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #EDEDED;
+                border-radius: 12px;
+
+                svg {
+                    width: 20px;
+                    height: 20px;
+                }
+
+                &:hover {
+                    //background-color: #ffffff;
+
+                    svg * {
+                        fill: #6da7b6;
+                    }
+                }
+
+            }
+        }
+    }
+}
+

@@ -2,6 +2,7 @@ const path = require("path");
 const {merge} = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 
 /*
@@ -49,6 +50,14 @@ const commonConfig = {
         }),
         new MiniCssExtractPlugin({
             filename: "index.css" // TODO: для дев сервера кеш здесь не рабтает
+        }),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: "./src/assets",
+                    to: "./assets"
+                }
+            ]
         })
     ],
     module: {
@@ -102,11 +111,11 @@ const devConfig = {
         port: 5007,
         static: "./dist",
         hot: true,
-        // historyApiFallback: true,
         watchFiles: [
             "./src/index.html",
             "./src/pages/login/index.html",
-            "./src/pages/register/index.html"
+            "./src/pages/register/index.html",
+            "./src/pages/books/index.html"
         ]
     }
 };

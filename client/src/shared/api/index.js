@@ -15,19 +15,15 @@ import {httpInstance} from "./httpInstance";
  * @returns {Promise<*>}
  */
 const me = async (authToken) => {
-    try {
-        const response = await httpInstance.get("me", {
-            "X-Auth": authToken
-        });
+    const response = await httpInstance.get("me", {
+        "X-Auth": authToken
+    });
 
-        if (response.status === 200)
-            return await response.json();
-        if (response.status === 403)
-            throw new Error("Incorrect login or password");
-        await handleErrorStatuses(response);
-    } catch (err) {
-        throw err;
-    }
+    if (response.status === 200)
+        return await response.json();
+    if (response.status === 403)
+        throw new Error("Incorrect login or password");
+    await handleErrorStatuses(response);
 };
 
 
@@ -37,21 +33,17 @@ const me = async (authToken) => {
  * @returns {Promise<*>}
  */
 const login = async (username, password) => {
-    try {
-        const response = await httpInstance.post("login", {
-            username,
-            password
-        });
+    const response = await httpInstance.post("login", {
+        username,
+        password
+    });
 
-        if (response.status === 200)
-            return await response.json();
-        if (response.status === 403)
-            throw new Error("Incorrect login or password");
+    if (response.status === 200)
+        return await response.json();
+    if (response.status === 403)
+        throw new Error("Incorrect login or password");
 
-        await handleErrorStatuses(response);
-    } catch (err) {
-        throw err;
-    }
+    await handleErrorStatuses(response);
 };
 
 const handleErrorStatuses = async (failedResponse) => {
@@ -68,23 +60,30 @@ const handleErrorStatuses = async (failedResponse) => {
  * @returns {Promise<void>}
  */
 const register = async (user) => {
-    try {
-        const response = await httpInstance.post("signin", user);
+    const response = await httpInstance.post("signin", user);
 
-        if (response.status === 200)
-            return await response.json();
-        await handleErrorStatuses(response);
-    } catch (err) {
-        throw err;
-    }
+    if (response.status === 200)
+        return await response.json();
+    await handleErrorStatuses(response);
 };
 
 
+const getBooks = async (authToken) => {
+    const response = await httpInstance.get("books", {
+        "X-Auth": authToken
+    });
 
+    if (response.status === 200)
+        return await response.json();
+    if (response.status === 403)
+        throw new Error("Incorrect login or password");
+    await handleErrorStatuses(response);
+};
 
 
 export const Api = {
     me,
     login,
-    register
+    register,
+    getBooks
 };

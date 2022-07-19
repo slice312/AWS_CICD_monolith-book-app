@@ -1,7 +1,7 @@
 import {baseInit} from "/src/index";
 import {Api} from "/src/shared/api";
 import {Constants} from "/src/shared/constants";
-import {BlockingLoader} from "/src/shared/ui";
+import {Alerts, BlockingLoader} from "/src/shared/ui";
 
 
 const redirectIfNotAuthenticated = async () => {
@@ -9,9 +9,8 @@ const redirectIfNotAuthenticated = async () => {
         BlockingLoader.show();
 
         const userToken = window.localStorage.getItem(Constants.USER_TOKEN_LS_KEY);
-        if (!userToken) {
+        if (!userToken)
             window.location.href = "./login.html";
-        }
 
         const userData = await Api.me(userToken);
         console.log("check Auth", userData);
@@ -28,12 +27,32 @@ const redirectIfNotAuthenticated = async () => {
 // redirectIfNotAuthenticated();
 
 const app = async () => {
-    await redirectIfNotAuthenticated();
     baseInit();
+    await redirectIfNotAuthenticated();
+    await loadBooks();
+};
 
+
+const loadBooks = async () => {
+    try {
+        const userToken = window.localStorage.getItem(Constants.USER_TOKEN_LS_KEY);
+
+        const books = await Api.getBooks(userToken);
+
+    } catch (err) {
+        Alerts.showError(err);
+    }
 };
 
 
 
-
 window.addEventListener("DOMContentLoaded", app);
+
+
+class BookCard extends HTMLElement {
+    constructor() {
+        super();
+        const shadow = this.attachShadow({mode: "open"});
+
+    }
+}
