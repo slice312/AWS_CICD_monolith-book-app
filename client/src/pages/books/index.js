@@ -1,11 +1,12 @@
 import {baseInit} from "/src/index";
 import {Api} from "/src/shared/api";
 import {Constants} from "/src/shared/constants";
+import {BlockingLoader} from "/src/shared/ui";
 
 
 const redirectIfNotAuthenticated = async () => {
     try {
-        showLoader();
+        BlockingLoader.show();
 
         const userToken = window.localStorage.getItem(Constants.USER_TOKEN_LS_KEY);
         if (!userToken) {
@@ -19,7 +20,7 @@ const redirectIfNotAuthenticated = async () => {
         console.error(err);
         // Alerts.showError(err);
     } finally {
-        hideLoader();
+        BlockingLoader.hide();
     }
 
 };
@@ -33,16 +34,6 @@ const app = async () => {
 };
 
 
-const showLoader = () => {
-    const loader = document.getElementById("loader");
-    loader.style.display = "block";
-};
-
-
-const hideLoader = () => {
-    const loader = document.getElementById("loader");
-    loader.style.display = "none";
-};
 
 
 window.addEventListener("DOMContentLoaded", app);

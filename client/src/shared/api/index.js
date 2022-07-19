@@ -26,7 +26,6 @@ const me = async (authToken) => {
             throw new Error("Incorrect login or password");
         await handleErrorStatuses(response);
     } catch (err) {
-        console.error(err);
         throw err;
     }
 };
@@ -51,7 +50,6 @@ const login = async (username, password) => {
 
         await handleErrorStatuses(response);
     } catch (err) {
-        console.error(err);
         throw err;
     }
 };
@@ -77,7 +75,6 @@ const register = async (user) => {
             return await response.json();
         await handleErrorStatuses(response);
     } catch (err) {
-        console.error(err);
         throw err;
     }
 };

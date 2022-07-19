@@ -1,6 +1,6 @@
 import {Api} from "/src/shared/api";
 import {baseInit} from "/src/index";
-import {Alerts} from "/src/shared/ui";
+import {Alerts, BlockingLoader} from "/src/shared/ui";
 import {Constants} from "/src/shared/constants";
 
 
@@ -13,11 +13,13 @@ const app = () => {
     loginForm.onsubmit = async (e) => {
         e.preventDefault();
 
-        showLoader();
-        const username = loginForm.elements.username.value;
-        const password = loginForm.elements.password.value;
+        BlockingLoader.show();
+
 
         try {
+            const username = loginForm.elements.username.value;
+            const password = loginForm.elements.password.value;
+
             const userData = await Api.login(username, password);
             window.localStorage.setItem(Constants.USER_TOKEN_LS_KEY, userData.token);
             console.log("login", userData);
@@ -25,22 +27,11 @@ const app = () => {
         } catch (err) {
             Alerts.showError(err);
         } finally {
-            hideLoader();
+            BlockingLoader.hide();
         }
     };
 };
 
-
-const showLoader = () => {
-    const loader = document.getElementById("loader");
-    loader.style.display = "block";
-};
-
-
-const hideLoader = () => {
-    const loader = document.getElementById("loader");
-    loader.style.display = "none";
-};
 
 
 window.addEventListener("DOMContentLoaded", app);

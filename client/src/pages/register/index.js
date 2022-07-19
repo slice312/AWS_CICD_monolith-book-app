@@ -1,6 +1,6 @@
 import {baseInit} from "/src/index";
 import {Api} from "/src/shared/api";
-import {Alerts} from "/src/shared/ui";
+import {Alerts, BlockingLoader} from "/src/shared/ui";
 
 
 const app = () => {
@@ -9,12 +9,13 @@ const app = () => {
     const registerForm = document.getElementById("register-form");
 
     registerForm.onsubmit = async (e) => {
-        e.preventDefault();
-        showLoader();
-
-        const formData = new FormData(registerForm);
-
         try {
+            e.preventDefault();
+            BlockingLoader.show();
+
+            const formData = new FormData(registerForm);
+
+
             const resp = await Api.register(Object.fromEntries(formData));
             Alerts.showSuccessMsg("заебумба", () => {
                 window.location.href = "./";
@@ -23,22 +24,9 @@ const app = () => {
         } catch (err) {
             Alerts.showError(err);
         } finally {
-            hideLoader();
+            BlockingLoader.hide();
         }
     };
-};
-
-
-
-const showLoader = () => {
-    const loader = document.getElementById("loader");
-    loader.style.display = "block";
-};
-
-
-const hideLoader = () => {
-    const loader = document.getElementById("loader");
-    loader.style.display = "none";
 };
 
 

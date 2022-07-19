@@ -57,7 +57,6 @@ export class HttpClient {
 
         } catch (err) {
             if (err.name === "AbortError") {
-                console.error("Request timed out");
                 throw new Error("Request timed out");
             }
 
