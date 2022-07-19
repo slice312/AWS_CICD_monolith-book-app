@@ -1,38 +1,45 @@
 import {baseInit} from "/src/index";
-
+import {Api} from "/src/shared/api";
+import {Alerts} from "/src/shared/ui";
 
 
 const app = () => {
     baseInit();
 
-    const loginForm = document.getElementById("register-form");
+    const registerForm = document.getElementById("register-form");
 
-    loginForm.onsubmit = async (e) => {
+    registerForm.onsubmit = async (e) => {
         e.preventDefault();
+        showLoader();
 
-        // const username = loginForm.elements.username.value;
-        // const password = loginForm.elements.password.value;
-        //
-        // try {
-        //     const userData = await Api.login(username, password);
-        //     window.localStorage.setItem("userToken", userData.token);
-        //     console.log("login", userData);
-        //     window.location.href = "./books";
-        // } catch (err) {
-        //     showError(err);
-        // }
+        const formData = new FormData(registerForm);
+
+        try {
+            const resp = await Api.register(Object.fromEntries(formData));
+            Alerts.showSuccessMsg("заебумба", () => {
+                window.location.href = "./";
+            });
+
+        } catch (err) {
+            Alerts.showError(err);
+        } finally {
+            hideLoader();
+        }
     };
 };
 
-const showError = (err) => {
-    // Swal.fire({
-    //     title: 'Error!',
-    //     text: err,
-    //     icon: 'error',
-    //     confirmButtonText: 'Cool',
-    //     confirmButtonColor: "#287F9A"
-    // });
 
+
+const showLoader = () => {
+    const loader = document.getElementById("loader");
+    loader.style.display = "block";
 };
+
+
+const hideLoader = () => {
+    const loader = document.getElementById("loader");
+    loader.style.display = "none";
+};
+
 
 window.addEventListener("DOMContentLoaded", app);

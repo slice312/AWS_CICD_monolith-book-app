@@ -1,6 +1,6 @@
-import Swal from "sweetalert2";
 import {Api} from "/src/shared/api";
 import {baseInit} from "/src/index";
+import {Alerts} from "/src/shared/ui";
 
 
 
@@ -22,26 +22,13 @@ const app = () => {
             console.log("login", userData);
             window.location.href = "./books.html";
         } catch (err) {
-            showError(err);
+            Alerts.showError(err);
         } finally {
             hideLoader();
         }
     };
 };
 
-const showError = (err) => {
-    void Swal.fire({
-        customClass: {
-            container: "app-alert"
-        },
-        html:
-            `<p class="alert-text">${err.message}</p>`,
-        icon: "error",
-        buttonsStyling: false,
-        confirmButtonText:
-            `<button class = "btn-default alert-btn">OK</button>`
-    });
-};
 
 const showLoader = () => {
     const loader = document.getElementById("loader");

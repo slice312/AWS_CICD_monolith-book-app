@@ -32,6 +32,8 @@ export class HttpClient {
     }
 
     async #request(url, method = "GET", data, headers) {
+        let timeoutCallbackId;
+
         try {
             const config = {
                 method,
@@ -50,7 +52,7 @@ export class HttpClient {
             const date = dayjs(new Date()).format("DD.MM.YYYY hh:mm:ss"); // TODO: move to middleware
             console.log(`${date}: [${method}]: ${fullUrl}`);
 
-            setTimeout(() => this.#abortController.abort(), this.#timeout);
+            timeoutCallbackId = setTimeout(() => this.#abortController.abort(), this.#timeout);
             return await fetch(fullUrl, config);
 
         } catch (err) {
@@ -61,6 +63,9 @@ export class HttpClient {
 
             console.error(err);
             throw err;
+
+        } finally {
+            clearTimeout(timeoutCallbackId);
         }
     };
 }

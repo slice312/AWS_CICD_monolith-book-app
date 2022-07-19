@@ -1,4 +1,7 @@
-const error = (res, status, text) => res.status(status).json(text).end()
+const error = (res, status, text) => 
+  res.status(status)
+  .json({message: text})
+  .end()
 
 module.exports = {
   error
