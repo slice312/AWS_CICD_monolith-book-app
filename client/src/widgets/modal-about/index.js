@@ -1,5 +1,6 @@
 import {Api} from "/src/shared/api";
 import {Alerts} from "/src/shared/ui";
+import {ModalEdit} from "/src/widgets/modal-edit";
 import {layout} from "./ui";
 
 
@@ -27,6 +28,25 @@ const open = async (bookId, onDelete, onFavoriteToggle) => {
             const btnFavorite = document.getElementById("modal-about-btn-favorite-icon");
             btnFavorite?.setAttribute("fill", bookInfo.isFavorite ? "red" : "gray");
         };
+
+
+        const btnEdit = document.getElementById("modal-about-btn-edit");
+        btnEdit.onclick = () => {
+            ModalEdit.open();// TODO: нужно перенести, https://feature-sliced.design/docs/concepts/cross-communication
+            console.log("edit click");
+        };
+
+
+        const onKeyDown = (e) => {
+            console.log("ALO");
+            if (e.key === "Escape") {
+                btnAboutModalClose.click();
+                window.removeEventListener("keydown", onKeyDown);
+            }
+        };
+
+        window.addEventListener("keydown", onKeyDown);
+
     } catch (err) {
         Alerts.showError(err);
     }
