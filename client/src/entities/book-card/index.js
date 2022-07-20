@@ -1,5 +1,5 @@
 import dedent from "dedent-js";
-
+import Swal from "sweetalert2";
 
 export * as bookModel from "./model";
 
@@ -25,6 +25,34 @@ export class BookCard extends HTMLElement {
         btnTrash.onclick = () => this.#onDelete(this.props);
         const btnFavorite = this.#shadowRoot.getElementById("btn-favorite");
         btnFavorite.onclick = () => this.#onFavoriteToggle(this.props);
+
+
+        const bookCard = this.#shadowRoot.getElementById("book-card");
+        bookCard.onclick = () => {
+
+            let timerInterval
+            Swal.fire({
+                title: 'Auto close alert!',
+                html: 'I will close in <b></b> milliseconds.',
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+            });
+        };
     }
 
     disconnectedCallback() {
@@ -74,6 +102,15 @@ export class BookCard extends HTMLElement {
                     border-radius: 10px;
                     font-family: "Poppins";
                     font-size: 15px;
+                }
+                
+                .book-card:hover {
+                    box-shadow: 4px 4px 8px 7px rgba(34, 60, 80, 0.2);
+                    transform:  scale(0.98);
+                }
+                
+                .book-card:active {
+                    background-color: red;
                 }
                 
                 .book-card__title {
@@ -128,7 +165,7 @@ export class BookCard extends HTMLElement {
 
     #getLayout() {
         return dedent`
-            <div class="book-card">
+            <div class="book-card" id="book-card">
                 <div>
                     <h3 class="book-card__title">
                         ${this.props.title}
