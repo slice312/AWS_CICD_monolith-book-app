@@ -9,7 +9,7 @@ module.exports = (req, res) => {
   const { id } = req.params
   const item = db.get('books').find({ id }).value()
   const item_expanded = db.get('books_expanded').find({ id }).value()
-  if (!item || !item_expanded) return utils.error(res, 404, 'cannot find books with this id')
+  if (!item || !item_expanded) return utils.error(res, 404, 'Cannot find books with this id')
 
   db.get('books').remove({ id }).write()
   db.get('books_expanded').remove({ id }).write()

@@ -2,7 +2,6 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    //align-items: center;
     background-color: $color-bg-main;
     @include font-default(400, 15px, auto, black);
 
@@ -65,59 +64,6 @@
         flex-wrap: wrap;
         gap: 50px;
         padding: 60px 50px;
-
-        .book-card {
-            width: 440px;
-            height: 180px;
-            padding: 28px 32px;
-            display: flex;
-            flex-direction: row;
-            gap: 5px;
-            background-color: white;
-            border-radius: 10px;
-
-            &__title {
-                font-weight: 700;
-                font-size: 20px;
-                line-height: 30px;
-            }
-
-            &__author {
-                margin-top: 10px;
-                font-size: 17px;
-                line-height: 24px;
-            }
-
-            &__buttons {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-            }
-
-            &__btn {
-                width: 40px;
-                height: 40px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: #EDEDED;
-                border-radius: 12px;
-
-                svg {
-                    width: 20px;
-                    height: 20px;
-                }
-
-                &:hover {
-                    //background-color: #ffffff;
-
-                    svg * {
-                        fill: #6da7b6;
-                    }
-                }
-
-            }
-        }
     }
 }
 

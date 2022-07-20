@@ -1,4 +1,5 @@
 import {httpInstance} from "./httpInstance";
+import {Constants} from "/src/shared/constants";
 
 
 /**
@@ -81,9 +82,39 @@ const getBooks = async (authToken) => {
 };
 
 
+/**
+ * @param {string} bookId
+ * @returns {Promise<void>}
+ */
+const deleteBook = async (bookId) => {
+    const response = await httpInstance.delete(`books/delete/${bookId}`, {
+        "X-Auth": window.localStorage.getItem(Constants.USER_TOKEN_LS_KEY)
+    });
+
+    if (response.status === 200)
+        return await response.json();
+    await handleErrorStatuses(response);
+};
+
+const updateBook = async (bookId, data) => {
+    const response = await httpInstance.put(`books/update/${bookId}`,
+        data,
+        {
+            "X-Auth": window.localStorage.getItem(Constants.USER_TOKEN_LS_KEY)
+        });
+
+
+    if (response.status === 200)
+        return await response.json();
+    await handleErrorStatuses(response);
+};
+
+
 export const Api = {
     me,
     login,
     register,
-    getBooks
+    getBooks,
+    deleteBook,
+    updateBook
 };

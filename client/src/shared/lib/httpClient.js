@@ -31,6 +31,14 @@ export class HttpClient {
         return this.#request(url, "POST", data, headers);
     }
 
+    delete(url, headers) {
+        return this.#request(url, "DELETE", null, headers);
+    }
+
+    put(url, data, headers) {
+        return this.#request(url, "PUT", data, headers);
+    }
+
     async #request(url, method = "GET", data, headers) {
         let timeoutCallbackId;
 
