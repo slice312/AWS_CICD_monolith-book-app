@@ -30,26 +30,26 @@ export class BookCard extends HTMLElement {
         const bookCard = this.#shadowRoot.getElementById("book-card");
         bookCard.onclick = () => {
 
-            let timerInterval
+            let timerInterval;
             Swal.fire({
                 title: 'Auto close alert!',
                 html: 'I will close in <b></b> milliseconds.',
                 timer: 2000,
                 timerProgressBar: true,
                 didOpen: () => {
-                    Swal.showLoading()
-                    const b = Swal.getHtmlContainer().querySelector('b')
+                    Swal.showLoading();
+                    const b = Swal.getHtmlContainer().querySelector('b');
                     timerInterval = setInterval(() => {
-                        b.textContent = Swal.getTimerLeft()
-                    }, 100)
+                        b.textContent = Swal.getTimerLeft();
+                    }, 100);
                 },
                 willClose: () => {
-                    clearInterval(timerInterval)
+                    clearInterval(timerInterval);
                 }
             }).then((result) => {
                 /* Read more about handling dismissals below */
                 if (result.dismiss === Swal.DismissReason.timer) {
-                    console.log('I was closed by the timer')
+                    console.log('I was closed by the timer');
                 }
             });
         };
@@ -72,7 +72,7 @@ export class BookCard extends HTMLElement {
     get props() {
         return {
             id: this.getAttribute("id"),
-            title:  this.getAttribute("title"),
+            title: this.getAttribute("title"),
             author: this.getAttribute("author"),
             isFavorite: this.getAttribute("is-favorite") === "true"
         };
@@ -148,7 +148,7 @@ export class BookCard extends HTMLElement {
                 
                 .book-card__btn:hover {
                     transition: 0.12s;
-                    background-color: #bbc5c7;
+                    background-color: #BBC5C7;
                 }
                 
                 .book-card__btn svg {

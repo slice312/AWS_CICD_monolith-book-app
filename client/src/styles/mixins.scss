@@ -9,5 +9,5 @@
 
 
 @mixin font-default($weight, $size, $lineHeight, $color) {
-    @include font-face("Poppins", $weight, $size, $lineHeight, $color);
+    @include font-face(Poppins, $weight, $size, $lineHeight, $color);
 }
