@@ -71,7 +71,7 @@ const onDeleteBook = async (props) => {
 
 const onFavoriteToggle = async (props) => {
     try {
-        const response = await Api.updateBook(props.id, !props.isFavorite);
+        const response = await Api.updateBook(props.id, {isFavorite: !props.isFavorite});
         const bookCard = document.getElementById(props.id);
         bookCard.setAttribute("is-favorite", String(!props.isFavorite));
 

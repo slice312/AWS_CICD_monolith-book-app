@@ -4,7 +4,7 @@ import {layout} from "./ui";
 
 
 
-const open = async (bookId) => {
+const open = async (bookId, onDelete, onFavoriteToggle) => {
     try {
         const bookInfo = await Api.getBook(bookId);
         const domParser = new DOMParser();
@@ -16,12 +16,26 @@ const open = async (bookId) => {
         };
 
 
+
+
+        const btnTrash = document.getElementById("btn-trash");
+        btnTrash.onclick = () => {
+            btnAboutModalClose.click();
+            onDelete();
+        };
+
+        const btnFavorite = document.getElementById("btn-favorite");
+        btnFavorite.onclick = () => {
+            onFavoriteToggle();
+            bookInfo.isFavorite = !bookInfo.isFavorite;
+            const btnFavorite = document.getElementById("modal-about-btn-favorite-icon");
+            btnFavorite?.setAttribute("fill", bookInfo.isFavorite ? "red" : "gray");
+        };
+
+
     } catch (err) {
         Alerts.showError(err);
     }
-
-
-
 };
 
 

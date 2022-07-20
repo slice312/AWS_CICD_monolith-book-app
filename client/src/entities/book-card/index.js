@@ -21,21 +21,32 @@ export class BookCard extends HTMLElement {
     connectedCallback() {
         this.#shadowRoot.innerHTML = `${this.#getStyles()} ${this.#getLayout()}`;
         const btnTrash = this.#shadowRoot.getElementById("btn-trash");
-        btnTrash.onclick = () => this.#onDelete(this.props);
+        btnTrash.onclick = (e) => {
+            e.stopPropagation();
+            this.#onDelete(this.props);
+        };
+
         const btnFavorite = this.#shadowRoot.getElementById("btn-favorite");
-        btnFavorite.onclick = () => this.#onFavoriteToggle(this.props);
+        btnFavorite.onclick = (e) => {
+            e.stopPropagation();
+            this.#onFavoriteToggle(this.props);
+        };
 
 
         const bookCard = this.#shadowRoot.getElementById("book-card");
         bookCard.onclick = () => {
-            void ModalAbout.open(this.props.id);
+            void ModalAbout.open(this.props.id,
+                () => this.#onDelete(this.props),
+                () => this.#onFavoriteToggle(this.props)
+            );
         };
     }
 
     disconnectedCallback() {
         const btnTrash = this.#shadowRoot.getElementById("btn-trash");
         const btnFavorite = this.#shadowRoot.getElementById("btn-favorite");
-        btnTrash.onclick = btnFavorite.onclick = null;
+        const bookCard = this.#shadowRoot.getElementById("book-card");
+        bookCard.onclick = btnTrash.onclick = btnFavorite.onclick = null;
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -76,7 +87,7 @@ export class BookCard extends HTMLElement {
                     gap: 5px;
                     background-color: white;
                     border-radius: 10px;
-                    font-family: "Poppins";
+                    font-family: Montserrat;
                     font-size: 15px;
                 }
                 
