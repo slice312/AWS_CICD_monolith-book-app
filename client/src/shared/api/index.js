@@ -10,6 +10,17 @@ import {Constants} from "/src/shared/constants";
  * @property {number} age
  */
 
+/**
+ * @typedef BookInfo
+ * @property {string} name
+ * @property {string} author
+ * @property {boolean} isFavorite
+ * @property {number} publishYear
+ * @property {string} publishHouse
+ * @property {number} pagesNumber
+ * @property {Array<string>} genres
+ * @property {string} originalLanguage
+ */
 
 /**
  * @param {string} authToken
@@ -84,6 +95,24 @@ const getBooks = async (authToken) => {
 
 /**
  * @param {string} bookId
+ * @returns {Promise<BookInfo>}
+ */
+const getBook = async (bookId) => {
+    const response = await httpInstance.get(`books/${bookId}`, {
+        "X-Auth": window.localStorage.getItem(Constants.USER_TOKEN_LS_KEY)
+    });
+
+    if (response.status === 200)
+        return await response.json();
+    if (response.status === 403)
+        throw new Error("Incorrect login or password");
+    await handleErrorStatuses(response);
+};
+
+
+
+/**
+ * @param {string} bookId
  * @returns {Promise<void>}
  */
 const deleteBook = async (bookId) => {
@@ -115,6 +144,7 @@ export const Api = {
     login,
     register,
     getBooks,
+    getBook,
     deleteBook,
     updateBook
 };

@@ -2,7 +2,7 @@ import {baseInit} from "/src/index";
 import {Api} from "/src/shared/api";
 import {Constants} from "/src/shared/constants";
 import {Alerts, BlockingLoader} from "/src/shared/ui";
-import {BookCard, bookModel} from "/src/entities/book-card";
+import {BookCard} from "/src/entities/book-card";
 
 
 const redirectIfNotAuthenticated = async () => {
@@ -71,12 +71,11 @@ const onDeleteBook = async (props) => {
 
 const onFavoriteToggle = async (props) => {
     try {
-        await bookModel.setFavoriteBook(props.id, !props.isFavorite);
+        const response = await Api.updateBook(props.id, !props.isFavorite);
         const bookCard = document.getElementById(props.id);
         bookCard.setAttribute("is-favorite", String(!props.isFavorite));
 
-    } catch
-        (err) {
+    } catch (err) {
         console.log(err);
         Alerts.showError(err);
     }

@@ -1,7 +1,6 @@
 import dedent from "dedent-js";
-import Swal from "sweetalert2";
+import {ModalAbout} from "/src/widgets/modal-about";
 
-export * as bookModel from "./model";
 
 export class BookCard extends HTMLElement {
     #shadowRoot;
@@ -29,34 +28,11 @@ export class BookCard extends HTMLElement {
 
         const bookCard = this.#shadowRoot.getElementById("book-card");
         bookCard.onclick = () => {
-
-            let timerInterval;
-            Swal.fire({
-                title: 'Auto close alert!',
-                html: 'I will close in <b></b> milliseconds.',
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: () => {
-                    Swal.showLoading();
-                    const b = Swal.getHtmlContainer().querySelector('b');
-                    timerInterval = setInterval(() => {
-                        b.textContent = Swal.getTimerLeft();
-                    }, 100);
-                },
-                willClose: () => {
-                    clearInterval(timerInterval);
-                }
-            }).then((result) => {
-                /* Read more about handling dismissals below */
-                if (result.dismiss === Swal.DismissReason.timer) {
-                    console.log('I was closed by the timer');
-                }
-            });
+            void ModalAbout.open(this.props.id);
         };
     }
 
     disconnectedCallback() {
-        console.log("disconnectedCallback");
         const btnTrash = this.#shadowRoot.getElementById("btn-trash");
         const btnFavorite = this.#shadowRoot.getElementById("btn-favorite");
         btnTrash.onclick = btnFavorite.onclick = null;
@@ -110,7 +86,7 @@ export class BookCard extends HTMLElement {
                 }
                 
                 .book-card:active {
-                    background-color: red;
+                    background-color: #E5E3E3;
                 }
                 
                 .book-card__title {

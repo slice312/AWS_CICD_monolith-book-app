@@ -48,7 +48,7 @@
             color: $color-element-main;
             font-size: 18px;
             line-height: 27px;
-            text-decoration-line: underline;
+            text-decoration: underline;
             cursor: pointer;
 
             &:hover {
@@ -58,6 +58,7 @@
     }
 
     .book-list {
+        //TODO: это все хуйня, исправить
         max-width: 1040px;
         display: flex;
         justify-content: space-between;
@@ -69,121 +70,3 @@
 
 
 
-.modal-about {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    z-index: 100;
-    overflow: auto;
-    display: block;
-    background: rgba(0, 0, 0, 0.5);
-
-    &__wrapper {
-        max-width: 800px;
-        min-height: 100%;
-        margin: 0 auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    &__container {
-        position: relative;
-        padding: 15px 25px 25px 25px;
-        border-radius: 10px;
-        color: black;
-        background-color: white;
-        box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
-    }
-
-    &__content {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-        border-width: 0;
-        @include font-default(400, 20px, normal, black);
-    }
-
-    &__btn-close {
-        position: absolute;
-        padding: 5px;
-        color: white;
-        top: 0;
-        right: 0;
-    }
-
-    &__title {
-        width: 100%;
-        font-size: 44px;
-        line-height: 66px;
-        text-align: center;
-
-    }
-
-    &__book-title {
-        font-weight: 700;
-        font-size: 40px;
-        line-height: 60px;
-    }
-
-    &__author {
-        font-size: 20px;
-        line-height: 30px;
-    }
-
-    &__props {
-        margin-top: 25px;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    &__prop-col {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    &__buttons {
-        margin-top: 80px;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        gap: 25px;
-    }
-
-    &__btn-edit {
-        align-self: center;
-        padding: 5px 70px;
-        font-size: 20px;
-        line-height: 30px;
-    }
-
-    &__btn-square {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #EDEDED;
-        border-radius: 12px;
-
-        &:active {
-            transform: scale(0.98);
-        }
-
-        &:hover {
-            transition: 0.12s;
-            background-color: #BBC5C7;
-
-            svg * {
-                filter: grayscale(30%);
-            }
-        }
-    }
-}
