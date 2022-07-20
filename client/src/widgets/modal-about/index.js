@@ -3,7 +3,6 @@ import {Alerts} from "/src/shared/ui";
 import {layout} from "./ui";
 
 
-
 const open = async (bookId, onDelete, onFavoriteToggle) => {
     try {
         const bookInfo = await Api.getBook(bookId);
@@ -14,9 +13,6 @@ const open = async (bookId, onDelete, onFavoriteToggle) => {
         btnAboutModalClose.onclick = () => {
             modalAbout.remove();
         };
-
-
-
 
         const btnTrash = document.getElementById("btn-trash");
         btnTrash.onclick = () => {
@@ -31,8 +27,6 @@ const open = async (bookId, onDelete, onFavoriteToggle) => {
             const btnFavorite = document.getElementById("modal-about-btn-favorite-icon");
             btnFavorite?.setAttribute("fill", bookInfo.isFavorite ? "red" : "gray");
         };
-
-
     } catch (err) {
         Alerts.showError(err);
     }

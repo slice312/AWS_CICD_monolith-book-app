@@ -23,12 +23,11 @@ import {Constants} from "/src/shared/constants";
  */
 
 /**
- * @param {string} authToken
  * @returns {Promise<*>}
  */
-const me = async (authToken) => {
+const authMe = async () => {
     const response = await httpInstance.get("me", {
-        "X-Auth": authToken
+        "X-Auth": window.localStorage.getItem(Constants.USER_TOKEN_LS_KEY)
     });
 
     if (response.status === 200)
@@ -140,7 +139,7 @@ const updateBook = async (bookId, data) => {
 
 
 export const Api = {
-    me,
+    authMe,
     login,
     register,
     getBooks,

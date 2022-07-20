@@ -1,4 +1,7 @@
 .books-page {
+    height: auto;
+    min-height: 100vh;
+    padding-bottom: 20px;
     background-color: $color-bg-main;
     @include font-default(400, 15px, auto, black);
 
