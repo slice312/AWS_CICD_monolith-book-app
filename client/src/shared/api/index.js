@@ -12,6 +12,7 @@ import {Constants} from "/src/shared/constants";
 
 /**
  * @typedef BookInfo
+ * @property {string} id
  * @property {string} name
  * @property {string} author
  * @property {boolean} isFavorite
@@ -79,9 +80,9 @@ const register = async (user) => {
 };
 
 
-const getBooks = async (authToken) => {
+const getBooks = async () => {
     const response = await httpInstance.get("books", {
-        "X-Auth": authToken
+        "X-Auth": window.localStorage.getItem(Constants.USER_TOKEN_LS_KEY)
     });
 
     if (response.status === 200)

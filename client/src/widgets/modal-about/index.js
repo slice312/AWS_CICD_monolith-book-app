@@ -17,12 +17,12 @@ const open = async (bookId, onDelete, onFavoriteToggle) => {
         const btnTrash = document.getElementById("btn-trash");
         btnTrash.onclick = () => {
             btnAboutModalClose.click();
-            onDelete();
+            onDelete(bookInfo);
         };
 
         const btnFavorite = document.getElementById("btn-favorite");
         btnFavorite.onclick = () => {
-            onFavoriteToggle();
+            onFavoriteToggle(bookInfo);
             bookInfo.isFavorite = !bookInfo.isFavorite;
             const btnFavorite = document.getElementById("modal-about-btn-favorite-icon");
             btnFavorite?.setAttribute("fill", bookInfo.isFavorite ? "red" : "gray");

@@ -1,4 +1,4 @@
-import {baseInit} from "/src/index";
+import {baseInit} from "/src/index"; // TODO: init
 import {Api} from "/src/shared/api";
 import {Constants} from "/src/shared/constants";
 import {Alerts, BlockingLoader} from "/src/shared/ui";
@@ -6,24 +6,15 @@ import {BookCard} from "/src/entities/book-card";
 import {ModalAbout} from "/src/widgets/modal-about";
 
 
-const redirectIfNotAuthenticated = async () => {
-    try {
-        const userData = await Api.authMe();
-        const userLabel = document.getElementById("nav-header-username");
-        userLabel.textContent = userData.username;
-    } catch {
-        window.location.href = "./login.html";
-    }
-};
-
-
 const app = async () => {
     try {
         BlockingLoader.show();
 
-        baseInit();
-        await redirectIfNotAuthenticated();
-        await loadBooks();
+        const user = await getCurrentUserOrRedirect();
+        renderUser(user);
+
+        const books = await Api.getBooks();
+        renderBooks(books);
 
         const logoutLink = document.getElementById("header-logout-link");
         logoutLink.onclick = () => {
@@ -39,54 +30,73 @@ const app = async () => {
 };
 
 
-const loadBooks = async () => {
+const getCurrentUserOrRedirect = async () => {
     try {
-        const userToken = window.localStorage.getItem(Constants.USER_TOKEN_LS_KEY);
-
-        const books = await Api.getBooks(userToken);
-
-        const booksContainer = document.getElementById("book-list");
-        for (const book of books) {
-            const bookCard = new BookCard(onBookCardClick, onDeleteBook, onFavoriteToggle);
-            bookCard.setAttribute("id", book.id);
-            bookCard.setAttribute("title", book.name);
-            bookCard.setAttribute("author", book.author);
-            bookCard.setAttribute("is-favorite", book.isFavorite);
-
-            booksContainer.appendChild(bookCard);
-        }
-
-    } catch (err) {
-        Alerts.showError(err);
+        return await Api.authMe();
+    } catch {
+        window.location.href = "./login.html";
     }
 };
 
-const onBookCardClick = async (props) => {
-    await ModalAbout.open(props.id,
-        () => onDeleteBook(props),
-        () => onFavoriteToggle(props)
+const renderUser = (user) => {
+    const userLabel = document.getElementById("nav-header-username");
+    userLabel.textContent = user.username;
+};
+
+/**
+ * @param {Array<BookInfo>} books
+ */
+const renderBooks = (books) => {
+    const booksContainer = document.getElementById("book-list");
+
+    for (const book of books) {
+        const bookCard = new BookCard(openModalBookInfo, onDeleteBook, onFavoriteToggle);
+        bookCard.setAttribute("id", book.id);
+        bookCard.setAttribute("title", book.name);
+        bookCard.setAttribute("author", book.author);
+        bookCard.setAttribute("is-favorite", String(book.isFavorite));
+
+        booksContainer.appendChild(bookCard);
+    }
+};
+
+/**
+ * @param {BookInfo} book
+ * @returns {Promise<void>}
+ */
+const openModalBookInfo = async (book) => {
+    await ModalAbout.open(
+        book.id,
+        onDeleteBook,
+        onFavoriteToggle
     );
 };
 
-const onDeleteBook = async (props) => {
+/**
+ * @param {BookInfo} book
+ * @returns {Promise<void>}
+ */
+const onDeleteBook = async (book) => {
     try {
-        const response = await Api.deleteBook(props.id);
-        const bookCard = document.getElementById(props.id);
+        await Api.deleteBook(book.id);
+        const bookCard = document.getElementById(book.id);
         bookCard.remove();
     } catch (err) {
-        console.log(err);
         Alerts.showError(err);
     }
 };
 
-const onFavoriteToggle = async (props) => {
+/**
+ * @param {BookInfo} book
+ * @returns {Promise<void>}
+ */
+const onFavoriteToggle = async (book) => {
     try {
-        const response = await Api.updateBook(props.id, {isFavorite: !props.isFavorite});
-        const bookCard = document.getElementById(props.id);
-        bookCard.setAttribute("is-favorite", String(!props.isFavorite));
+        const response = await Api.updateBook(book.id, {isFavorite: !book.isFavorite});
+        const bookCard = document.getElementById(book.id);
+        bookCard.setAttribute("is-favorite", String(!book.isFavorite));
 
     } catch (err) {
-        console.log(err);
         Alerts.showError(err);
     }
 };
