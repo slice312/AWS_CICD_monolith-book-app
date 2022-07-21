@@ -90,27 +90,4 @@
         font-size: 20px;
         line-height: 30px;
     }
-
-    &__btn-square {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #EDEDED;
-        border-radius: 12px;
-
-        &:active {
-            transform: scale(0.98);
-        }
-
-        &:hover {
-            transition: 0.12s;
-            background-color: #BBC5C7;
-
-            svg * {
-                filter: grayscale(30%);
-            }
-        }
-    }
 }

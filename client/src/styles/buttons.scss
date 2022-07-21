@@ -20,3 +20,27 @@
         color: #DAD8D8;
     }
 }
+
+
+.btn-square {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EDEDED;
+    border-radius: 12px;
+
+    &:active {
+        transform: scale(0.97);
+    }
+
+    &:hover {
+        transition: 0.12s;
+        background-color: #BBC5C7;
+
+        svg * {
+            filter: grayscale(30%);
+        }
+    }
+}

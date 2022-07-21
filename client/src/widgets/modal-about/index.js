@@ -4,11 +4,18 @@ import {ModalEdit} from "/src/widgets/modal-edit";
 import {layout} from "./ui";
 
 
+/*
+TODO: то что открытие модалки асинхронная функция не правильно.
+    надо разделить на синхроную предзагрузку,
+    и после асихронную функцию с заполнением контента.
+    В других модалках, тоже чекнуть
+ */
 const open = async (bookId, onDelete, onFavoriteToggle) => {
     try {
         const bookInfo = await Api.getBook(bookId);
         const domParser = new DOMParser();
-        const htmlTemplate =  domParser.parseFromString(layout(bookInfo), "text/html");
+        const htmlTemplate = domParser.parseFromString(layout(bookInfo), "text/html");
+        // TODO: rename
         const modalAbout = document.body.appendChild(htmlTemplate.body.firstChild);
         const btnAboutModalClose = document.getElementById("modal-order-close-btn");
         btnAboutModalClose.onclick = () => {
@@ -33,13 +40,13 @@ const open = async (bookId, onDelete, onFavoriteToggle) => {
 
         const btnEdit = document.getElementById("modal-about-btn-edit");
         btnEdit.onclick = () => {
-            ModalEdit.open();// TODO: нужно перенести, https://feature-sliced.design/docs/concepts/cross-communication
-            console.log("edit click");
+            window.removeEventListener("keydown", onKeyDown);
+            // TODO: нужно перенести, https://feature-sliced.design/docs/concepts/cross-communication
+            ModalEdit.open("2", () => window.addEventListener("keydown", onKeyDown));
         };
 
 
         const onKeyDown = (e) => {
-            console.log("ALO");
             if (e.key === "Escape") {
                 btnAboutModalClose.click();
                 window.removeEventListener("keydown", onKeyDown);

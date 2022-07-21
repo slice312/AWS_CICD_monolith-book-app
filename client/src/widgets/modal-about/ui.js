@@ -33,7 +33,7 @@ export const layout = (bookInfo) => {
                                 Edit
                             </button>
                             
-                            <button class="modal-about__btn-square" id="btn-favorite" type="button">
+                            <button class="btn-square" id="btn-favorite" type="button">
                                 <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path 
                                         id="modal-about-btn-favorite-icon"
@@ -48,7 +48,7 @@ export const layout = (bookInfo) => {
                                 </svg>
                             </button>
                             
-                            <button class="modal-about__btn-square" id="btn-trash" type="button">
+                            <button class="btn-square" id="btn-trash" type="button">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path   
                                         fill="#B1B1B1" 

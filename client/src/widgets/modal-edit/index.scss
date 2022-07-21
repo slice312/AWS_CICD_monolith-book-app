@@ -8,7 +8,7 @@
     background-color: rgba(0, 0, 0, 0.5);
 
     &__wrapper {
-        max-width: 800px;
+        max-width: 500px;
         min-height: 100%;
         margin: 0 auto;
         display: flex;
@@ -19,7 +19,7 @@
     &__container {
         width: 100%;
         position: relative;
-        padding: 15px 25px 50px 25px;
+        padding: 15px 25px 10px 25px;
         border-radius: 10px;
         color: black;
         background-color: white;
@@ -46,7 +46,7 @@
 
     &__title {
         width: 100%;
-        font-size: 44px;
+        font-size: 37px;
         line-height: 66px;
         text-align: center;
     }
@@ -56,61 +56,53 @@
         font-size: 40px;
         line-height: 60px;
     }
+}
 
-    &__author {
-        font-size: 20px;
-        line-height: 30px;
+
+.modal-edit-form {
+    width: 100%;
+
+    .default-form__field {
+        label {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+
+            span {
+                width: 250px;
+                text-align: right;
+            }
+        }
     }
 
-    &__props {
-        margin-top: 50px;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    &__prop-col {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+    .default-form__btn-submit {
+        //margin-top: 50px;
     }
 
     &__buttons {
-        margin-top: 80px;
-        width: 100%;
+        margin-top: 25px;
         display: flex;
-        justify-content: center;
-        gap: 25px;
+        flex-direction: column;
     }
 
-    &__btn-edit {
-        align-self: center;
-        padding: 5px 120px;
-        font-size: 20px;
-        line-height: 30px;
-    }
+    &__btn-favorite {
+        position: absolute;
+        top: 15px;
+        right: 65px;
 
-    &__btn-square {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #EDEDED;
-        border-radius: 12px;
-
-        &:active {
-            transform: scale(0.98);
+        input {
+            display: none;
         }
+    }
+
+    &__btn-remove {
+        background-color: #d30808;
 
         &:hover {
             transition: 0.12s;
-            background-color: #BBC5C7;
-
-            svg * {
-                filter: grayscale(30%);
-            }
+            background-color: #a20000;
         }
     }
 }

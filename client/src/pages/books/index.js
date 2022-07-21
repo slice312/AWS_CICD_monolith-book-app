@@ -1,6 +1,6 @@
 import {baseInit} from "/src/index"; // TODO: init
-import {Api} from "/src/shared/api";
 import {Constants} from "/src/shared/constants";
+import {Api} from "/src/shared/api";
 import {Alerts, BlockingLoader} from "/src/shared/ui";
 import {BookCard} from "/src/entities/book-card";
 import {ModalAbout} from "/src/widgets/modal-about";
@@ -90,6 +90,7 @@ const onDeleteBook = async (book) => {
 
 /**
  * @param {BookInfo} bookInfoBeforeCommit
+ * @returns {Promise<boolean>}
  */
 const onCardFavoriteToggle = async (bookInfoBeforeCommit) => {
     try {
@@ -103,6 +104,7 @@ const onCardFavoriteToggle = async (bookInfoBeforeCommit) => {
 
 /**
  * @param {BookInfo} bookInfoBeforeCommit
+ * @returns {Promise<boolean>}
  */
 const onModalFavoriteToggle = async (bookInfoBeforeCommit) => {
     if (await onCardFavoriteToggle(bookInfoBeforeCommit)) {
