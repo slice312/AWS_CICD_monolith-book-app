@@ -1,6 +1,6 @@
 import {Api} from "/src/shared/api";
 import {Alerts} from "/src/shared/ui";
-import {ModalEdit} from "/src/widgets/modal-edit";
+import {ModalEdit} from "/src/features/book-view-edit/modal-edit";
 import {layout} from "./ui";
 
 
@@ -42,7 +42,7 @@ const open = async (bookId, onDelete, onFavoriteToggle) => {
         btnEdit.onclick = () => {
             window.removeEventListener("keydown", onKeyDown);
             // TODO: нужно перенести, https://feature-sliced.design/docs/concepts/cross-communication
-            ModalEdit.open("2", () => window.addEventListener("keydown", onKeyDown));
+            ModalEdit.open(bookInfo, () => window.addEventListener("keydown", onKeyDown));
         };
 
 

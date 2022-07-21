@@ -3,7 +3,7 @@ import {Constants} from "/src/shared/constants";
 import {Api} from "/src/shared/api";
 import {Alerts, BlockingLoader} from "/src/shared/ui";
 import {BookCard} from "/src/entities/book-card";
-import {ModalAbout} from "/src/widgets/modal-about";
+import {ModalAbout} from "/src/features/book-view-edit";
 
 
 const app = async () => {

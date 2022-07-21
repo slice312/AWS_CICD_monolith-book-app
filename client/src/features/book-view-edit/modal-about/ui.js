@@ -25,7 +25,7 @@ export const layout = (bookInfo) => {
                             </div>
                             <div class="modal-about__props-col">
                                 <p>Pages number: ${bookInfo.pagesNumber}</p>
-                                <p>Genres: ${bookInfo.genres.join(",")}</p>
+                                <p>Genres: ${bookInfo.genres.join(", ")}</p>
                             </div>
                         </div>
                         <div class="modal-about__buttons">

@@ -8,7 +8,7 @@
     background-color: rgba(0, 0, 0, 0.5);
 
     &__wrapper {
-        max-width: 500px;
+        max-width: 550px;
         min-height: 100%;
         margin: 0 auto;
         display: flex;
@@ -19,7 +19,7 @@
     &__container {
         width: 100%;
         position: relative;
-        padding: 15px 25px 10px 25px;
+        padding: 15px 30px 30px 30px;
         border-radius: 10px;
         color: black;
         background-color: white;
@@ -71,14 +71,10 @@
             font-size: 20px;
 
             span {
-                width: 250px;
+                width: 230px;
                 text-align: right;
             }
         }
-    }
-
-    .default-form__btn-submit {
-        //margin-top: 50px;
     }
 
     &__buttons {
@@ -98,11 +94,11 @@
     }
 
     &__btn-remove {
-        background-color: #d30808;
+        background-color: #D30808;
 
         &:hover {
             transition: 0.12s;
-            background-color: #a20000;
+            background-color: #A20000;
         }
     }
 }

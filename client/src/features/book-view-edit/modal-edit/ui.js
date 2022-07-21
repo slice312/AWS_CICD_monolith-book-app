@@ -16,15 +16,11 @@ export const layout = (bookInfo) => {
                         </button>
                         <h2 class="modal-edit__title">Edit Book</h2>
                         
-         
-                        <form class="default-form modal-edit-form" id="login-form" autocomplete="off">
+                        <form class="default-form modal-edit-form" id="modal-edit-form" autocomplete="off">
                             <label class="btn-square modal-edit-form__btn-favorite">
-                                <input 
-                                    type="checkbox"
-                                    name="isFavorite"
-                                >
+                                <input type="checkbox" name="isFavorite">
                                     <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path 
+                                        <path
                                             id="modal-about-btn-favorite-icon"
                                             fill=${bookInfo.isFavorite ? "red" : "gray"}
                                             d="M19.3762 2.5401C18.5386 0.825205 16.1258 -0.577889 13.3191 
@@ -40,10 +36,12 @@ export const layout = (bookInfo) => {
                             <div class="default-form__field">
                                 <label>
                                     <span>Title:</span>
-                                    <input 
-                                        class="default-form__input" 
-                                        type="text" 
-                                        name="name" required
+                                    <input
+                                        class="default-form__input"
+                                        type="text"
+                                        name="name"
+                                        required
+                                        value="${bookInfo.name}"
                                         placeholder="Title"
                                     >
                                 </label>
@@ -51,10 +49,12 @@ export const layout = (bookInfo) => {
                             <div class="default-form__field">
                                 <label>
                                     <span>Author:</span>
-                                    <input 
-                                        class="default-form__input" 
-                                        type="text" 
-                                        name="author" required 
+                                    <input
+                                        class="default-form__input"
+                                        type="text"
+                                        name="author"
+                                        required
+                                        value="${bookInfo.author}"
                                         placeholder="Author"
                                     >
                                 </label>
@@ -62,10 +62,12 @@ export const layout = (bookInfo) => {
                             <div class="default-form__field">
                                 <label>
                                     <span>Publish year:</span>
-                                    <input 
-                                        class="default-form__input" 
-                                        type="number" 
-                                        name="publishYear" 
+                                    <input
+                                        class="default-form__input"
+                                        type="number"
+                                        pattern="\d{4}"
+                                        name="publishYear"
+                                        value="${bookInfo.publishYear}"
                                         placeholder="Publish year"
                                     >
                                 </label>
@@ -74,9 +76,10 @@ export const layout = (bookInfo) => {
                                 <label>
                                     <span>Publish house:</span>
                                     <input 
-                                        class="default-form__input" 
-                                        type="text" 
-                                        name="publishHouse" 
+                                        class="default-form__input"
+                                        type="text"
+                                        name="publishHouse"
+                                        value="${bookInfo.publishHouse}"
                                         placeholder="Publish house"
                                     >
                                 </label>
@@ -84,10 +87,11 @@ export const layout = (bookInfo) => {
                             <div class="default-form__field">
                                 <label>
                                     <span>Pages:</span>
-                                    <input 
-                                        class="default-form__input" 
-                                        type="number" 
-                                        name="pagesNumber" 
+                                    <input
+                                        class="default-form__input"
+                                        type="number"
+                                        name="pagesNumber"
+                                        value="${bookInfo.pagesNumber}"
                                         placeholder="Pages"
                                     >
                                 </label>
@@ -95,10 +99,12 @@ export const layout = (bookInfo) => {
                             <div class="default-form__field">
                                 <label>
                                     <span>Genres:</span>
-                                    <input 
-                                        class="default-form__input" 
-                                        type="text" 
-                                        name="genres" 
+                                    <!-- TODO: сделать через badges как на гитхабе -->
+                                    <input
+                                        class="default-form__input"
+                                        type="text"
+                                        name="genres"
+                                        value="${bookInfo.genres.join(", ")}"
                                         placeholder="Genres"
                                     >
                                 </label>
@@ -106,10 +112,11 @@ export const layout = (bookInfo) => {
                             <div class="default-form__field">
                                 <label>
                                     <span>Language:</span>
-                                    <input 
-                                        class="default-form__input" 
-                                        type="text" 
-                                        name="originalLanguage" 
+                                    <input
+                                        class="default-form__input"
+                                        type="text"
+                                        name="originalLanguage"
+                                        value="${bookInfo.originalLanguage}"
                                         placeholder="Original language"
                                     >
                                 </label>

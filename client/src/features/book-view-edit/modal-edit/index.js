@@ -1,18 +1,17 @@
-import {Api} from "/src/shared/api";
 import {Alerts} from "/src/shared/ui";
 import {layout} from "./ui";
 
 
-const open = async (bookId, onClosing) => {
+const open = (bookInfo, onClosing) => {
     try {
-        // const bookInfo = await Api.getBook(bookId);
         const domParser = new DOMParser();
-        const htmlTemplate =  domParser.parseFromString(layout({}), "text/html");
+        const htmlTemplate =  domParser.parseFromString(layout(bookInfo), "text/html");
         const modalWindow = document.body.appendChild(htmlTemplate.body.firstChild);
-        // const btnAboutModalClose = document.getElementById("modal-order-close-btn");
-        // btnAboutModalClose.onclick = () => {
-        //     modalAbout.remove();
-        // };
+
+        const bookForm = document.getElementById("modal-edit-form");
+        bookForm.onsubmit = (e) => {
+            e.preventDefault();
+        };
 
         const btnClose = document.getElementById("modal-edit-btn-close");
         btnClose.onclick = () => {
