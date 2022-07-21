@@ -5,9 +5,7 @@
     right: 0;
     left: 0;
     z-index: 51;
-    overflow: auto;
-    display: block;
-    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 
     &__wrapper {
         max-width: 800px;

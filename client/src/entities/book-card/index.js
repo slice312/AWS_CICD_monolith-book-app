@@ -41,9 +41,11 @@ export class BookCard extends HTMLElement {
         };
 
         const btnFavorite = this.#shadowRoot.getElementById("btn-favorite");
-        btnFavorite.onclick = (e) => {
+        btnFavorite.onclick = async (e) => {
             e.stopPropagation();
-            this.#onFavoriteToggle(this.props);
+            if (await this.#onFavoriteToggle(this.props)) {
+                this.setAttribute("is-favorite", String(!this.props.isFavorite));
+            }
         };
 
         const rootContainer = this.#shadowRoot.getElementById("book-card");

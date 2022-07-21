@@ -22,11 +22,12 @@ const open = async (bookId, onDelete, onFavoriteToggle) => {
         };
 
         const btnFavorite = document.getElementById("btn-favorite");
-        btnFavorite.onclick = () => {
-            onFavoriteToggle(bookInfo);
-            bookInfo.isFavorite = !bookInfo.isFavorite;
-            const btnFavorite = document.getElementById("modal-about-btn-favorite-icon");
-            btnFavorite?.setAttribute("fill", bookInfo.isFavorite ? "red" : "gray");
+        btnFavorite.onclick = async () => {
+            if (await onFavoriteToggle(bookInfo)) {
+                bookInfo.isFavorite = !bookInfo.isFavorite;
+                const btnFavoriteIcon = document.getElementById("modal-about-btn-favorite-icon");
+                btnFavoriteIcon.setAttribute("fill", bookInfo.isFavorite ? "red" : "gray");
+            }
         };
 
 

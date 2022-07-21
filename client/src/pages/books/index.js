@@ -8,6 +8,7 @@ import {ModalAbout} from "/src/widgets/modal-about";
 
 const app = async () => {
     try {
+        baseInit();
         BlockingLoader.show();
 
         const user = await getCurrentUserOrRedirect();
@@ -16,6 +17,7 @@ const app = async () => {
         const books = await Api.getBooks();
         renderBooks(books);
 
+        // TODO: перенести
         const logoutLink = document.getElementById("header-logout-link");
         logoutLink.onclick = () => {
             window.localStorage.removeItem(Constants.USER_TOKEN_LS_KEY);
@@ -50,7 +52,7 @@ const renderBooks = (books) => {
     const booksContainer = document.getElementById("book-list");
 
     for (const book of books) {
-        const bookCard = new BookCard(openModalBookInfo, onDeleteBook, onFavoriteToggle);
+        const bookCard = new BookCard(openModalBookInfo, onDeleteBook, onCardFavoriteToggle);
         bookCard.setAttribute("id", book.id);
         bookCard.setAttribute("title", book.name);
         bookCard.setAttribute("author", book.author);
@@ -68,7 +70,7 @@ const openModalBookInfo = async (book) => {
     await ModalAbout.open(
         book.id,
         onDeleteBook,
-        onFavoriteToggle
+        onModalFavoriteToggle
     );
 };
 
@@ -87,18 +89,29 @@ const onDeleteBook = async (book) => {
 };
 
 /**
- * @param {BookInfo} book
- * @returns {Promise<void>}
+ * @param {BookInfo} bookInfoBeforeCommit
  */
-const onFavoriteToggle = async (book) => {
+const onCardFavoriteToggle = async (bookInfoBeforeCommit) => {
     try {
-        const response = await Api.updateBook(book.id, {isFavorite: !book.isFavorite});
-        const bookCard = document.getElementById(book.id);
-        bookCard.setAttribute("is-favorite", String(!book.isFavorite));
-
+        await Api.updateBook(bookInfoBeforeCommit.id, {isFavorite: !bookInfoBeforeCommit.isFavorite});
+        return true;
     } catch (err) {
         Alerts.showError(err);
+        return false;
     }
+};
+
+/**
+ * @param {BookInfo} bookInfoBeforeCommit
+ */
+const onModalFavoriteToggle = async (bookInfoBeforeCommit) => {
+    if (await onCardFavoriteToggle(bookInfoBeforeCommit)) {
+        const bookCard = document.getElementById(bookInfoBeforeCommit.id);
+        bookCard.setAttribute("is-favorite", String(!bookInfoBeforeCommit.isFavorite));
+        return true;
+    }
+
+    return false;
 };
 
 
