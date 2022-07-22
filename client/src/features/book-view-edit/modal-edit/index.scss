@@ -5,6 +5,8 @@
     right: 0;
     left: 0;
     z-index: 51;
+    overflow-y: scroll;
+    padding: 15px;
     background-color: rgba(0, 0, 0, 0.5);
 
     &__wrapper {
@@ -99,6 +101,40 @@
         &:hover {
             transition: 0.12s;
             background-color: #A20000;
+        }
+    }
+}
+
+
+@media (max-width: 576px) {
+    .modal-edit {
+        &__title {
+            font-size: 25px;
+        }
+
+        &__container {
+            padding: 15px;
+        }
+    }
+
+    .modal-edit-form {
+
+        &__btn-favorite {
+            right: 35px;
+        }
+
+        .default-form__field {
+            label {
+                font-size: 15px;
+
+                input {
+                    font-size: 15px;
+                }
+
+                span {
+                    width: 120px;
+                }
+            }
         }
     }
 }

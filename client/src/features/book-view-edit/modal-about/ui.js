@@ -14,18 +14,28 @@ export const layout = (bookInfo) => {
                         <button class="btn-default modal-about__btn-close" id="modal-order-close-btn" type="button">
                             <img src="assets/icons/x-mark.svg" alt="x-mark">
                         </button>
-                        <h2 class="modal-about__title">Book Information</h2>
+                        <h2 class="modal-about__title">Book Info</h2>
                         <h3 class="modal-about__book-title">${bookInfo.name}</h3>
                         <h4 class="modal-about__author">${bookInfo.author}</h4>
                         <div class="modal-about__props">
                             <div class="modal-about__props-col">
-                                <p>Publish house: ${bookInfo.publishHouse}</p>
-                                <p>Lang: ${bookInfo.originalLanguage}</p>
-                                <p>Publish year: ${bookInfo.publishYear}</p>
+                                <p>
+                                    <span class="modal-about__prop-label">Publish house:</span> ${bookInfo.publishHouse}
+                                </p>
+                                <p>
+                                    <span class="modal-about__prop-label">Lang:</span> ${bookInfo.originalLanguage}
+                                    </p>
+                                <p>
+                                    <span class="modal-about__prop-label">Publish year:</span> ${bookInfo.publishYear}
+                                </p>
                             </div>
                             <div class="modal-about__props-col">
-                                <p>Pages number: ${bookInfo.pagesNumber}</p>
-                                <p>Genres: ${bookInfo.genres.join(", ")}</p>
+                                <p>
+                                    <span class="modal-about__prop-label">Pages number:</span> ${bookInfo.pagesNumber}
+                                </p>
+                                <p>
+                                    <span class="modal-about__prop-label">Genres:</span> ${bookInfo.genres.join(", ")}
+                                </p>
                             </div>
                         </div>
                         <div class="modal-about__buttons">

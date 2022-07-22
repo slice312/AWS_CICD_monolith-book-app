@@ -146,6 +146,20 @@ export class BookCard extends HTMLElement {
                 .book-card__btn svg:hover * {
                     fill: #6DA7B6;
                 }
+                
+                @media (max-width: 475px) {
+                    .book-card {
+                        width: 85vw;
+                        min-height: 150px;
+                        height: auto;
+                        /*padding: 5px;*/
+                    }
+                    .book-card__title {
+                        font-weight: 700;
+                        font-size: 17px;
+                        line-height: 20px;
+                    }
+                }
             </style>
         `;
     }

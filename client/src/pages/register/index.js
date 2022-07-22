@@ -7,29 +7,32 @@ const app = () => {
     baseInit();
 
     const registerForm = document.getElementById("register-form");
-    registerForm.onsubmit = async (e) => {
+    registerForm.onsubmit = onFormSubmit;
+};
+
+const onFormSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const obj = Object.fromEntries(formData);
+
+    clearErrors();
+    setTimeout(async () => {
         try {
-            e.preventDefault();
-            BlockingLoader.show();
-
-            const formData = new FormData(registerForm);
-            const obj = Object.fromEntries(formData);
-
-            clearErrors();
-            setTimeout(async () => {
-                if (validate(obj)) {
-                    await Api.register(Object.fromEntries(formData));
-                    Alerts.showSuccessMsg("заебумба", () => {
-                        window.location.href = "./";
-                    });
-                }
-            }, 80);
+            if (validate(obj)) {
+                BlockingLoader.show();
+                await Api.register(Object.fromEntries(formData));
+                Alerts.showSuccessMsg("заебумба", () => {
+                    window.location.href = "./";
+                });
+            }
         } catch (err) {
             Alerts.showError(err);
+
         } finally {
             BlockingLoader.hide();
         }
-    };
+    }, 80);
 };
 
 
