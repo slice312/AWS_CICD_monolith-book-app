@@ -44,11 +44,8 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.5",
-    "alpinejs": "^3.10.2",
     "dayjs": "^1.11.3",
     "dedent-js": "^1.0.1",
-    "joi": "^17.6.0",
     "sweetalert2": "^11.4.22"
   }
 }
