@@ -41,3 +41,9 @@ For run api server with reset data
 cd server
 npm run restart
 ```
+
+#### Default User
+```
+login: admin
+ pass: 1234
+```
