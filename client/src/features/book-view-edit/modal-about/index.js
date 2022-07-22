@@ -4,12 +4,6 @@ import {ModalEdit} from "/src/features/book-view-edit/modal-edit";
 import {layout} from "./ui";
 
 
-/*
-TODO: то что открытие модалки асинхронная функция не правильно.
-    надо разделить на синхроную предзагрузку,
-    и после асихронную функцию с заполнением контента.
-    В других модалках, тоже чекнуть
- */
 const open = async (bookId, onDelete, onFavoriteToggle) => {
     try {
         const bookInfo = await Api.getBook(bookId);
