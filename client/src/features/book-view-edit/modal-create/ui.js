@@ -2,21 +2,20 @@ import dedent from "dedent-js";
 
 
 /**
- * @param {BookInfo} bookInfo
  * @returns {string} - html template
  */
-export const layout = (bookInfo) => {
+export const layout = () => {
     return dedent`
-        <div class="modal-edit" id="modal-edit">
-            <div class="modal-edit__wrapper">
-                <div class="modal-edit__container animate animate__zoomIn" id="modal-edit-container">
-                    <div class="modal-edit__content">
-                        <button class="btn-default modal-edit__btn-close" id="modal-edit-btn-close" type="button">
+        <div class="modal-create" id="modal-create">
+            <div class="modal-create__wrapper">
+                <div class="modal-create__container animate animate__zoomIn" id="modal-create-container">
+                    <div class="modal-create__content">
+                        <button class="btn-default modal-create__btn-close" id="modal-create-btn-close" type="button">
                             <img src="assets/icons/x-mark.svg" alt="x-mark">
                         </button>
-                        <h2 class="modal-edit__title">Add Book</h2>
+                        <h2 class="modal-create__title">Add Book</h2>
                         
-                        <form class="default-form modal-edit-form" id="modal-edit-form" autocomplete="off">
+                        <form class="default-form modal-create-form" id="modal-create-form" autocomplete="off">
                             <div class="default-form__field">
                                 <label>
                                     <span>Title:</span>
@@ -27,8 +26,8 @@ export const layout = (bookInfo) => {
                                         name="name"
                                         placeholder="Title"
                                     >
+                                    <span class="default-form__err-label" id="modal-create-field-name-err"></span>
                                 </label>
-                                <span class="default-form__err-label" id="modal-create-field-name-err"></span>
                             </div>
                             <div class="default-form__field">
                                 <label>
@@ -40,8 +39,8 @@ export const layout = (bookInfo) => {
                                         name="author"
                                         placeholder="Author"
                                     >
+                                    <span class="default-form__err-label" id="modal-create-field-author-err"></span>
                                 </label>
-                                <span class="default-form__err-label" id="modal-create-field-author-err"></span>
                             </div>
                             <div class="default-form__field">
                                 <label>
@@ -99,7 +98,7 @@ export const layout = (bookInfo) => {
                                     >
                                 </label>
                             </div>
-                            <div class="modal-edit-form__buttons">
+                            <div class="modal-create-form__buttons">
                                 <button class="btn-default default-form__btn-submit" type="submit">
                                     Save
                                 </button>

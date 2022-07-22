@@ -1,4 +1,4 @@
-.modal-edit {
+.modal-create {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -52,20 +52,17 @@
         line-height: 66px;
         text-align: center;
     }
-
-    &__book-title {
-        font-weight: 700;
-        font-size: 40px;
-        line-height: 60px;
-    }
 }
 
 
-.modal-edit-form {
+.modal-create-form {
     width: 100%;
 
     .default-form__field {
+
         label {
+            position: relative;
+
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -79,35 +76,22 @@
         }
     }
 
+    .default-form__err-label {
+        position: absolute;
+        top: 47px;
+        left: 48px;
+    }
+
     &__buttons {
         margin-top: 25px;
         display: flex;
         flex-direction: column;
     }
-
-    &__btn-favorite {
-        position: absolute;
-        top: 15px;
-        right: 65px;
-
-        input {
-            display: none;
-        }
-    }
-
-    &__btn-remove {
-        background-color: #D30808;
-
-        &:hover {
-            transition: 0.12s;
-            background-color: #A20000;
-        }
-    }
 }
 
 
 @media (max-width: 576px) {
-    .modal-edit {
+    .modal-create {
         &__title {
             font-size: 25px;
         }
@@ -117,7 +101,7 @@
         }
     }
 
-    .modal-edit-form {
+    .modal-create-form {
 
         &__btn-favorite {
             right: 35px;

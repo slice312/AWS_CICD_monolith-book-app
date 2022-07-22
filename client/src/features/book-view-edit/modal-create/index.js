@@ -1,42 +1,20 @@
+import {Api} from "/src/shared/api";
 import {Alerts, BlockingLoader} from "/src/shared/ui";
 import {layout} from "./ui";
-import {Api} from "/src/shared/api";
 
 
-const open = (bookInfo, onClosing) => {
+const open = () => {
     try {
         const domParser = new DOMParser();
-        const htmlTemplate = domParser.parseFromString(layout({}), "text/html");
+        const htmlTemplate = domParser.parseFromString(layout(), "text/html");
         const modalWindow = document.body.appendChild(htmlTemplate.body.firstChild);
 
-        const bookForm = document.getElementById("modal-edit-form");
-        bookForm.onsubmit = (e) => {
-            e.preventDefault();
-            const formData = Object.fromEntries(new FormData(e.target));
+        const bookForm = document.getElementById("modal-create-form");
+        bookForm.onsubmit = onFormSubmit;
 
-            clearErrors();
-            setTimeout(async () => {
-                try {
-                    if (validate(formData)) {
-                        BlockingLoader.show();
-                        await Api.addBook(formData);
-                        Alerts.showSuccessMsg("заебумба", () => {
-                            window.location.href = "./";
-                        });
-                    }
-                } catch (err) {
-                    Alerts.showError(err);
-
-                } finally {
-                    BlockingLoader.hide();
-                }
-            }, 80);
-        };
-
-        const btnClose = document.getElementById("modal-edit-btn-close");
+        const btnClose = document.getElementById("modal-create-btn-close");
         btnClose.onclick = () => {
             modalWindow.remove();
-            onClosing?.();
         };
 
         const onKeyDown = (e) => {
@@ -53,6 +31,37 @@ const open = (bookInfo, onClosing) => {
     }
 };
 
+
+const onFormSubmit = (e) => {
+    e.preventDefault();
+
+    const rawFormData = Object.fromEntries(new FormData(e.target));
+    const formData = {
+        ...rawFormData,
+        publishYear: Number(rawFormData.publishYear),
+        pagesNumber: Number(rawFormData.pagesNumber),
+        genres: rawFormData.genres.split()
+            .map(x => x.trim())
+    };
+
+    clearErrors();
+    setTimeout(async () => {
+        try {
+            if (validate(formData)) {
+                BlockingLoader.show();
+                await Api.addBook(formData);
+                Alerts.showSuccessMsg("Success", () => {
+                    window.location.href = "./";
+                });
+            }
+        } catch (err) {
+            Alerts.showError(err);
+
+        } finally {
+            BlockingLoader.hide();
+        }
+    }, 80);
+};
 
 const fieldsElements = () => ({
     name: {

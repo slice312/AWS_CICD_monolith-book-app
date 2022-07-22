@@ -76,7 +76,7 @@ const setButtonHandlers = () => {
     };
 
     const btnAddBook = document.getElementById("books-page-btn-add-book");
-    btnAddBook.onclick = createBook;
+    btnAddBook.onclick = ModalBookCreate.open;
 };
 
 /**
@@ -134,17 +134,5 @@ const onModalFavoriteToggle = async (bookInfoBeforeCommit) => {
     return false;
 };
 
-const createBook = async () => {
-    try {
-        ModalBookCreate.open()
-        // BlockingLoader.show();
-        // const response = await Api.addBook()
-
-    } catch (err) {
-        Alerts.showError(err);
-    } finally {
-        // BlockingLoader.hide();
-    }
-};
 
 window.addEventListener("DOMContentLoaded", app);
