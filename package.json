@@ -1,0 +1,23 @@
+{
+  "name": "zeon-modules-2.1_bookapp",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "install-dependencies": "npm install && cd server && npm install && cd ../client && npm install",
+    "api-server": "cd server && npm start",
+    "client": "cd client && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slice312/zeon-modules-2.1_BookApp.git"
+  },
+  "author": "slice312",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/slice312/zeon-modules-2.1_BookApp/issues"
+  },
+  "homepage": "https://github.com/slice312/zeon-modules-2.1_BookApp#readme",
+  "devDependencies": {
+    "concurrently": "^7.3.0"
+  }
+}

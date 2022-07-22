@@ -15,11 +15,11 @@ const open = async (bookId, onDelete, onFavoriteToggle) => {
         const bookInfo = await Api.getBook(bookId);
         const domParser = new DOMParser();
         const htmlTemplate = domParser.parseFromString(layout(bookInfo), "text/html");
-        // TODO: rename
-        const modalAbout = document.body.appendChild(htmlTemplate.body.firstChild);
+
+        const modalWindow = document.body.appendChild(htmlTemplate.body.firstChild);
         const btnAboutModalClose = document.getElementById("modal-order-close-btn");
         btnAboutModalClose.onclick = () => {
-            modalAbout.remove();
+            modalWindow.remove();
         };
 
         const btnTrash = document.getElementById("btn-trash");
@@ -41,7 +41,6 @@ const open = async (bookId, onDelete, onFavoriteToggle) => {
         const btnEdit = document.getElementById("modal-about-btn-edit");
         btnEdit.onclick = () => {
             window.removeEventListener("keydown", onKeyDown);
-            // TODO: нужно перенести, https://feature-sliced.design/docs/concepts/cross-communication
             ModalEdit.open(
                 bookInfo,
                 () => window.addEventListener("keydown", onKeyDown),
