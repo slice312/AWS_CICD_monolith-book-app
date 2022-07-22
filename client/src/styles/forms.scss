@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 10px;
+    gap: 20px;
     border-radius: 10px;
     background-color: white;
     @include font-default(400, 15px, auto, black);
@@ -14,6 +14,7 @@
     }
 
     &__field {
+        position: relative;
         width: 100%;
 
         input {
@@ -31,10 +32,22 @@
             }
         }
 
+        input.input_error {
+            border: 1px solid #CF4747;
+        }
+
         label {
             width: 100%;
             font-size: 17px;
         }
+    }
+
+    &__err-label {
+        position: absolute;
+        color: #CF4747;
+        left: 0;
+        top: 67px;
+        font-size: 15px;
     }
 
     &__btn-submit {

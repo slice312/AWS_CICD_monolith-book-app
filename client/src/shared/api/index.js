@@ -69,7 +69,7 @@ const handleErrorStatuses = async (failedResponse) => {
 /**
  *
  * @param {User} user
- * @returns {Promise<void>}
+ * @returns {Promise<object>}
  */
 const register = async (user) => {
     const response = await httpInstance.post("signin", user);
