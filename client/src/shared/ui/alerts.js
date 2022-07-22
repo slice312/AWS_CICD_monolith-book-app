@@ -69,4 +69,4 @@ export const deleteDialog = async (onDelete) => {
     } catch (err) {
         showError(err);
     }
-}
+};

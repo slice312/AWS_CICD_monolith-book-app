@@ -33,3 +33,11 @@ npm run client
 This script run `webpack-dev-server` and auto open browser with `https://localhost:5007`.  
 If no browser is opened, you must manually open this URL in the browser.  
 Port `5007` specified in `webpack.config.json` in devConfig.
+
+
+## Reset state
+For run api server with reset data
+```js
+cd server
+npm run restart
+```

@@ -38,12 +38,14 @@ export const layout = (bookInfo) => {
                                     <span>Title:</span>
                                     <input
                                         class="default-form__input"
+                                        id="modal-create-field-name-input"
                                         type="text"
                                         name="name"
                                         required
                                         value="${bookInfo.name}"
                                         placeholder="Title"
                                     >
+                                    <span class="default-form__err-label" id="modal-create-field-name-err"></span>
                                 </label>
                             </div>
                             <div class="default-form__field">
@@ -51,12 +53,14 @@ export const layout = (bookInfo) => {
                                     <span>Author:</span>
                                     <input
                                         class="default-form__input"
+                                        id="modal-create-field-author-input"
                                         type="text"
                                         name="author"
                                         required
                                         value="${bookInfo.author}"
                                         placeholder="Author"
                                     >
+                                <span class="default-form__err-label" id="modal-create-field-author-err"></span>
                                 </label>
                             </div>
                             <div class="default-form__field">
