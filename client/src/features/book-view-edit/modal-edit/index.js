@@ -54,7 +54,6 @@ const onFormSubmit = (e) => {
         genres: rawFormData.genres.split()
             .map(x => x.trim())
     };
-    debugger
 
     clearErrors();
     setTimeout(async () => {
