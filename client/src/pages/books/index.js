@@ -3,7 +3,7 @@ import {Constants} from "/src/shared/constants";
 import {Api} from "/src/shared/api";
 import {Alerts, BlockingLoader} from "/src/shared/ui";
 import {BookCard} from "/src/entities/book-card";
-import {ModalAbout} from "/src/features/book-view-edit";
+import {ModalAbout, ModalBookCreate} from "/src/features/book-view-edit";
 
 
 const app = async () => {
@@ -17,12 +17,7 @@ const app = async () => {
         const books = await Api.getBooks();
         renderBooks(books);
 
-        // TODO: перенести
-        const logoutLink = document.getElementById("header-logout-link");
-        logoutLink.onclick = () => {
-            window.localStorage.removeItem(Constants.USER_TOKEN_LS_KEY);
-            window.location.href = "./";
-        };
+        setButtonHandlers();
     } catch (err) {
         console.error(err);
         Alerts.showError(err);
@@ -60,6 +55,28 @@ const renderBooks = (books) => {
 
         booksContainer.appendChild(bookCard);
     }
+
+    showEmptyMessageIfNoBooks();
+};
+
+const showEmptyMessageIfNoBooks = () => {
+    const emptyMessage = document.getElementById("book-page-empty-msg");
+    emptyMessage.textContent = "";
+
+    const bookCards = document.querySelectorAll("book-card");
+    if (!bookCards.length)
+        emptyMessage.textContent = "Your book list is empty, please add one more book";
+};
+
+const setButtonHandlers = () => {
+    const logoutLink = document.getElementById("header-logout-link");
+    logoutLink.onclick = () => {
+        window.localStorage.removeItem(Constants.USER_TOKEN_LS_KEY);
+        window.location.href = "./";
+    };
+
+    const btnAddBook = document.getElementById("books-page-btn-add-book");
+    btnAddBook.onclick = createBook;
 };
 
 /**
@@ -83,6 +100,7 @@ const onDeleteBook = async (book) => {
         await Api.deleteBook(book.id);
         const bookCard = document.getElementById(book.id);
         bookCard.remove();
+        showEmptyMessageIfNoBooks();
     } catch (err) {
         Alerts.showError(err);
     }
@@ -116,5 +134,17 @@ const onModalFavoriteToggle = async (bookInfoBeforeCommit) => {
     return false;
 };
 
+const createBook = async () => {
+    try {
+        ModalBookCreate.open()
+        // BlockingLoader.show();
+        // const response = await Api.addBook()
+
+    } catch (err) {
+        Alerts.showError(err);
+    } finally {
+        // BlockingLoader.hide();
+    }
+};
 
 window.addEventListener("DOMContentLoaded", app);

@@ -125,6 +125,12 @@ const deleteBook = async (bookId) => {
     await handleErrorStatuses(response);
 };
 
+/**
+ *
+ * @param {string} bookId
+ * @param data
+ * @returns {Promise<*>}
+ */
 const updateBook = async (bookId, data) => {
     const response = await httpInstance.put(`books/update/${bookId}`,
         data,
@@ -138,6 +144,24 @@ const updateBook = async (bookId, data) => {
     await handleErrorStatuses(response);
 };
 
+/**
+ * @param {BookInfo} book
+ * @returns {Promise<*>}
+ */
+const addBook = async (book) => {
+    const response = await httpInstance.post(`books/create`,
+        book,
+        {
+            "X-Auth": window.localStorage.getItem(Constants.USER_TOKEN_LS_KEY)
+        });
+
+
+    if (response.status === 200)
+        return await response.json();
+    await handleErrorStatuses(response);
+};
+
+
 
 export const Api = {
     authMe,
@@ -146,5 +170,6 @@ export const Api = {
     getBooks,
     getBook,
     deleteBook,
-    updateBook
+    updateBook,
+    addBook
 };
