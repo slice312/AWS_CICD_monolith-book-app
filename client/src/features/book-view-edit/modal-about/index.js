@@ -42,7 +42,16 @@ const open = async (bookId, onDelete, onFavoriteToggle) => {
         btnEdit.onclick = () => {
             window.removeEventListener("keydown", onKeyDown);
             // TODO: нужно перенести, https://feature-sliced.design/docs/concepts/cross-communication
-            ModalEdit.open(bookInfo, () => window.addEventListener("keydown", onKeyDown));
+            ModalEdit.open(
+                bookInfo,
+                () => window.addEventListener("keydown", onKeyDown),
+                async () => {
+                    if (await onDelete(bookInfo)) {
+                        btnAboutModalClose.click();
+                        return true;
+                    }
+                }
+            );
         };
 
 

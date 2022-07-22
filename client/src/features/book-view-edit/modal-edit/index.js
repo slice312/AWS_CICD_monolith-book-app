@@ -2,7 +2,7 @@ import {Alerts} from "/src/shared/ui";
 import {layout} from "./ui";
 
 
-const open = (bookInfo, onClosing) => {
+const open = (bookInfo, onClosing, onDelete) => {
     try {
         const domParser = new DOMParser();
         const htmlTemplate =  domParser.parseFromString(layout(bookInfo), "text/html");
@@ -27,6 +27,12 @@ const open = (bookInfo, onClosing) => {
         };
 
         window.addEventListener("keydown", onKeyDown);
+
+        const btnDelete = document.getElementById("modal-edit-btn-remove");
+        btnDelete.onclick = async () => {
+            if (await onDelete())
+                btnClose.click();
+        };
 
     } catch (err) {
         Alerts.showError(err);

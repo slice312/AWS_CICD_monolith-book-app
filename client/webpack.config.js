@@ -26,7 +26,7 @@ const commonConfig = {
         new HtmlWebpackPlugin({
             template: "./src/index.html",
             filename: "index.html",
-            chunks: ["index"],
+            chunks: ["index"]
             // inject: "body"
         }),
 

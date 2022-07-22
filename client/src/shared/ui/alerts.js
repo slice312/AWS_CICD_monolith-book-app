@@ -38,3 +38,35 @@ export const showSuccessMsg = (message, onClose = null) => {
         }
     ).then(result => onClose?.());
 };
+
+
+/**
+ * @param {function} onDelete
+ * @returns {Promise<void>}
+ */
+export const deleteDialog = async (onDelete) => {
+    try {
+        const result = await Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#287F9A",
+            cancelButtonColor: "#D30808",
+            confirmButtonText: "Yes, delete it!"
+        });
+
+        if (result.isConfirmed) {
+            onDelete();
+            await Swal.fire(
+                {
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success",
+                    confirmButtonColor: "#287F9A"
+                });
+        }
+    } catch (err) {
+        showError(err);
+    }
+}

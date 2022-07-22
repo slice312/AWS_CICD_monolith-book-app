@@ -123,7 +123,7 @@ export const layout = (bookInfo) => {
                             <div class="modal-edit-form__buttons">
                                 <button 
                                     class="btn-default default-form__btn-submit modal-edit-form__btn-remove"
-                                    id="modal-edit-btn-remove" 
+                                    id="modal-edit-btn-remove"
                                     type="button"
                                 >
                                     Remove

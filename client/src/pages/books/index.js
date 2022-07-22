@@ -1,9 +1,10 @@
-import {baseInit} from "/src/index"; // TODO: init
+import {baseInit} from "/src/index";
 import {Constants} from "/src/shared/constants";
 import {Api} from "/src/shared/api";
 import {Alerts, BlockingLoader} from "/src/shared/ui";
 import {BookCard} from "/src/entities/book-card";
 import {ModalAbout, ModalBookCreate} from "/src/features/book-view-edit";
+import Swal from "sweetalert2";
 
 
 const app = async () => {
@@ -96,14 +97,16 @@ const openModalBookInfo = async (book) => {
  * @returns {Promise<void>}
  */
 const onDeleteBook = async (book) => {
-    try {
+    let result = false;
+    await Alerts.deleteDialog(async () => {
         await Api.deleteBook(book.id);
         const bookCard = document.getElementById(book.id);
         bookCard.remove();
         showEmptyMessageIfNoBooks();
-    } catch (err) {
-        Alerts.showError(err);
-    }
+        result = true;
+    });
+
+    return result;
 };
 
 /**
