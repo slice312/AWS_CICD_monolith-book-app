@@ -6,7 +6,7 @@
 ## About
 - A study project to learn how to work with server API (CRUD operations),
 multipages site, native web components
-- The structure of the client application was developed by [Feature-Sliced Design methodology](https://feature-sliced.design/en/)
+- The structure of the client application was developed by [Feature-Sliced Design methodology](https://feature-sliced.design)
 
 ## Features
 - ES6 modules, ES2022 classes
