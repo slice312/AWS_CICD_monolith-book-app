@@ -1,6 +1,6 @@
 const path = require("path");
 const {merge} = require("webpack-merge");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
@@ -23,33 +23,33 @@ const commonConfig = {
         clean: true
     },
     plugins: [
-        new HtmlWebpackPlugin({
+        new HtmlPlugin({
             template: "./src/index.html",
             filename: "index.html",
             chunks: ["index"]
             // inject: "body"
         }),
 
-        new HtmlWebpackPlugin({
+        new HtmlPlugin({
             template: "./src/pages/login/index.html",
             filename: "login.html",
             chunks: ["login"],
             inject: "body"
         }),
-        new HtmlWebpackPlugin({
+        new HtmlPlugin({
             template: "./src/pages/register/index.html",
             filename: "register.html",
             chunks: ["register"],
             inject: "body"
         }),
-        new HtmlWebpackPlugin({
+        new HtmlPlugin({
             template: "./src/pages/books/index.html",
             filename: "books.html",
             chunks: ["books"],
             inject: "body"
         }),
         new MiniCssExtractPlugin({
-            filename: "index.css" // TODO: для дев сервера кеш здесь не рабтает
+            filename: "index.css"
         }),
         new CopyPlugin({
             patterns: [
