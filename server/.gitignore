@@ -1,5 +1,9 @@
-/node_modules
-.vscode
-.DS_Store
+# npm
+node_modules/
+package-lock.json
+
+# WebStorm
+.idea/
+
 db.json
 /db/db.json

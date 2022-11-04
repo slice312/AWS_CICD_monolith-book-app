@@ -1,38 +1,33 @@
-# Fake api для стажеров Zeon
-
-Для запуска сервера сначала установите все зависимости используя команду
-```
-npm install
-```
-После этого запускаем сервер командой
+Run server
 ```
 npm start
 ```
-Сервер будет запущен на порту 1717 (http://localhost:1717)
+The server will run on port 1717 (http://localhost:1717)
 
-**Для получения списка всех книг**  
+**To get a list of all books**  
 `GET /books`
 
-**Для получения одной книги по id**  
+**To get one book by id**  
 `GET /books/:id`
 
-**Для создания новой книги**  
+**To create a new book**  
 `POST /books/create`
-id объекта сгерерируется на сервере  
+object id is generated on the server
 
-**Для редактирования книги**  
+**To edit a book**  
 `PUT /books/update/:id`  
 
-**Для удаления книги**  
+**To delete a book**  
 `DELETE /books/delete/:id`  
 
 
-## Авторизация и регистрация пользователя
+## Authorization 
 
-**Для получения данных о пользователе**  
-В заголовке "X-Auth" должен передаваться токен. Если токен не корректен или отсутствует, в ответе придет ошибка 403
+**For get user data**  
+In X-Auth header must pass token.
+If token is invalid or missing, a 403 error will be returned in the response.
 `GET /me`
-в успешном ответе придет объект
+in success response will return object
 ```
   username: string
   firstName: string (optional)
@@ -40,33 +35,30 @@ id объекта сгерерируется на сервере
 ```
 
 
-**Для регистрации нового пользователя**  
+**For registration new user**  
 `POST /signin`
-в body должен приходить объект вида
+body must contain an object of the form
 ```
   username: string
   password: string
   firstName: string (optional)
   age: number (optional)
 ```
-в ответе придет объект
+in response
 ```
-  token: string // токен 
-  data: object // вся известная информация о юзере
+  token: string // token
+  data: object // user data
 ```
 
-**Для авторизации**  
+**For login**  
 `POST /login`
-в body должен приходить объект вида
+body must contain an object of the form
 ```
   username: string
   password: string
 ```
-в ответе придет объект
+in response
 ```
-  token: string // токен 
-  data: object // вся известная информация о юзере
+  token: string // token 
+  data: object // user data
 ```
-
-
-

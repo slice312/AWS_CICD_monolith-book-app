@@ -1,2 +1,9 @@
+# npm
+node_modules/
+package-lock.json
+
+# Webpack
 build/
-dist/
+
+# WebStorm
+.idea/

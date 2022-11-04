@@ -1,10 +1,10 @@
-const db = require('../db')
-const utils = require('../utils')
+const db = require("../db");
+const utils = require("../utils");
 
 module.exports = (req, res) => {
-  const token = req.get('X-Auth')
-  const user = db.get('users').find({ token }).value()
-  if (!user) return utils.error(res, 403, 'Access is denied')
+    const token = req.get("X-Auth");
+    const user = db.get("users").find({token}).value();
+    if (!user) return utils.error(res, 403, "Access is denied");
 
-  res.send(user.data)
-}
+    res.send(user.data);
+};

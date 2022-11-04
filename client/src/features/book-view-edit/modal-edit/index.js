@@ -8,7 +8,7 @@ let _bookId;
 
 const open = (bookInfo, onClosing, onDelete) => {
     try {
-        _bookId = bookInfo.id
+        _bookId = bookInfo.id;
         const domParser = new DOMParser();
         const htmlTemplate =  domParser.parseFromString(layout(bookInfo), "text/html");
         const modalWindow = document.body.appendChild(htmlTemplate.body.firstChild);
@@ -110,7 +110,7 @@ const validate = (data) => {
     }
 
     return result;
-}
+};
 
 export const ModalEdit = {
     open

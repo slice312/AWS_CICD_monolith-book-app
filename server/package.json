@@ -1,27 +1,33 @@
 {
-  "name": "fake-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon server.js",
-    "restart": "rm db/db.json && npm start"
-  },
-  "nodemonConfig": {
-    "ext": "js",
-    "ignore": [
-      "db.json"
-    ],
-    "delay": "2"
-  },
-  "author": "an4morph",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "lowdb": "^1.0.0",
-    "nodemon": "^2.0.6",
-    "query-string": "^6.13.7",
-    "shortid": "^2.2.16"
-  }
+    "name": "fake-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "author": "slice312",
+    "license": "MIT",
+    "scripts": {
+        "start": "nodemon server.js",
+        "restart": "rm db/db.json && npm start",
+        "lint": "eslint . --ext .js",
+        "lint-fix": "eslint . --ext .js --fix"
+    },
+    "dependencies": {
+        "cors": "2.8.5",
+        "express": "4.18.2",
+        "lowdb": "5.0.5",
+        "nodemon": "2.0.20",
+        "query-string": "7.1.1",
+        "shortid": "2.2.16"
+    },
+    "devDependencies": {
+        "eslint": "8.26.0",
+        "eslint-plugin-import": "2.26.0"
+    },
+    "nodemonConfig": {
+        "ext": "js",
+        "ignore": [
+            "db.json"
+        ],
+        "delay": 2
+    }
 }

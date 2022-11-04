@@ -3,12 +3,8 @@ const {merge} = require("webpack-merge");
 const HtmlPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const DotenvPlugin = require("dotenv-webpack");
 
-
-/*
-  TODO: пока в тупую сделал сборку всех страниц,
-   надо будет написать функцию, собирать все .html файлы в /src/pages
- */
 
 const commonConfig = {
     entry: {
@@ -23,6 +19,9 @@ const commonConfig = {
         clean: true
     },
     plugins: [
+        new DotenvPlugin({
+            path: ".env"
+        }),
         new HtmlPlugin({
             template: "./src/index.html",
             filename: "index.html",
