@@ -8,7 +8,6 @@ const DotenvPlugin = require("dotenv-webpack");
 
 const commonConfig = {
     entry: {
-        // "./src/index.js",
         login: "./src/pages/login/index.js",
         register: "./src/pages/register/index.js",
         books: "./src/pages/books/index.js"

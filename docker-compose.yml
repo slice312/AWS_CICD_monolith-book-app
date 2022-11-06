@@ -1,10 +1,19 @@
 version: '3'
 services:
-  app:
+  server:
     build:
       context: server
-      dockerfile: server/Dockerfile
-    container_name: book-app-api-container
+      dockerfile: Dockerfile
+    container_name: book-app-api
     restart: always
     ports:
-      - 1717:1717
+      - 5007:5001
+
+  client:
+    build:
+      context: client
+      dockerfile: Dockerfile
+    container_name: book-app-client
+    restart: always
+    ports:
+      - 3001:80

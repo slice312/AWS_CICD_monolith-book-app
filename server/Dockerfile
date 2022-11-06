@@ -6,7 +6,7 @@ RUN npm install
 COPY . .
 
 ENV NODE_ENV=production
-ENV PORT=5007
+ENV PORT=5001
 
 CMD ["npm", "start"]
 EXPOSE ${PORT}
