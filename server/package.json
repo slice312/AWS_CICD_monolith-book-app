@@ -1,20 +1,22 @@
 {
     "name": "fake-api",
     "version": "1.0.0",
-    "description": "",
+    "description": "fake-api",
     "main": "index.js",
     "author": "slice312",
     "license": "MIT",
     "scripts": {
-        "start": "nodemon server.js",
-        "restart": "rm db/db.json && npm start",
+        "dev": "nodemon server.js",
+        "restart": "rm db/db.json && npm run dev",
+        "prod": "node server.js",
         "lint": "eslint . --ext .js",
         "lint-fix": "eslint . --ext .js --fix"
     },
     "dependencies": {
         "cors": "2.8.5",
+        "dotenv": "16.0.3",
         "express": "4.18.2",
-        "lowdb": "5.0.5",
+        "lowdb": "1.0.0",
         "nodemon": "2.0.20",
         "query-string": "7.1.1",
         "shortid": "2.2.16"

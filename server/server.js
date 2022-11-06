@@ -1,3 +1,6 @@
+require("dotenv").config({path: ".env"});
+
+
 const express = require("express");
 const cors = require("cors");
 
@@ -24,4 +27,5 @@ app.post("/books/create", books.createNew);
 app.put("/books/update/:id", books.updateItem);
 app.delete("/books/delete/:id", books.deleteItem);
 
+console.log(`Running ${process.env.NODE_ENV} environment`);
 app.listen(PORT, () => console.log(`App listening at http://localhost:${PORT}`));
