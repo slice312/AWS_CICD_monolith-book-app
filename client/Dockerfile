@@ -14,5 +14,4 @@ COPY --from=build /usr/src/app/dist /usr/share/nginx/html
 WORKDIR /usr/share/nginx/html
 ENV WEB_API_URL="http://localhost:5007"
 
-RUN echo "NGINX DIR" && ls -l
 EXPOSE 80
