@@ -5,11 +5,6 @@
   "author": "slice312",
   "license": "MIT",
   "private": true,
-  "homepage": "",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/slice312/book-app"
-  },
   "keywords": [
     "vanilla",
     "crud",

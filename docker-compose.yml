@@ -5,6 +5,7 @@ services:
     container_name: book-app-api-server
     command: npm run start
     restart: unless-stopped  # TODO: че это
+
     ports:
       - "3001:3001"
     environment:
@@ -13,16 +14,12 @@ services:
 
 
   # TODO: тут проблемы с env переменными, потому что вебпак при билде все process.env заменяет
-  #   на значения и в бандле нет обращения к переменным окружения
+  #  на значения и в бандле нет обращения к переменным окружения
   client:
     build: ./client
     container_name: book-app-client
     command: serve dist -l 3000
-    ports:
-      - "3000:3000"
     restart: unless-stopped
-    environment:
-      - WEB_API_URL="lolkek"
     depends_on:
       - api-server
 
