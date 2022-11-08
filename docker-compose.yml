@@ -5,13 +5,9 @@ services:
     container_name: book-app-api-server
     command: npm run start
     restart: unless-stopped  # TODO: че это
-
-    ports:
-      - "3001:3001"
     environment:
       - NODE_ENV=production
       - PORT=3001
-
 
   # TODO: тут проблемы с env переменными, потому что вебпак при билде все process.env заменяет
   #  на значения и в бандле нет обращения к переменным окружения
@@ -23,13 +19,12 @@ services:
     depends_on:
       - api-server
 
-
   nginx:
     image: nginx:stable-alpine
     container_name: book-app-nginx
     ports:
       - "80:80"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - client
