@@ -14,6 +14,6 @@ jobs:
         with:
           registry: docker.pkg.github.com
           name: docker.pkg.github.com/triobone/book-app/book-app
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ secrets.DOCKER_HUB_USER_NAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
           tags: "develop"
