@@ -13,7 +13,9 @@ const books = require("./crud");
 const db = require("./db");
 
 const allowHosts = [
-    "http://35.72.7.174"
+    "http://35.72.7.174",
+    "localhost:3000",
+    "client:3000",
 ];
 
 app.use(cors({
