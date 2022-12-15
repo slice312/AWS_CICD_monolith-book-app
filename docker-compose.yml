@@ -4,7 +4,7 @@ services:
     build: ./server
     container_name: book-app-api-server
     command: npm run start
-    restart: unless-stopped  # TODO: че это
+    restart: unless-stopped  # TODO: че это да
     environment:
       - NODE_ENV=production
       - PORT=3001
