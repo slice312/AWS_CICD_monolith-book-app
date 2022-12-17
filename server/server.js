@@ -13,9 +13,11 @@ const books = require("./crud");
 const db = require("./db");
 
 const allowHosts = [
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "http://localhost"
+    // "http://localhost:3000",
+    // "http://localhost:3001",
+    "http://localhost",
+    "http://client:3000",
+    "http://client:3001"
 ];
 
 app.use(cors({
