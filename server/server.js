@@ -18,7 +18,8 @@ const allowHosts = [
     "http://localhost",
     "http://client:3000",
     "http://client:3001",
-    "http://43.207.80.230:80"
+    "http://43.207.80.230:80",
+    "http://43.207.80.230:3000"
 ];
 
 app.use(cors({
