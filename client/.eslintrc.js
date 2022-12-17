@@ -5,11 +5,17 @@ module.exports = {
         ecmaVersion: 13
     },
     plugins: ["import"],
+    ignorePatterns: [
+        ".git/",
+        ".idea/",
+        "node_modules/",
+        "dist/",
+    ],
     rules: {
         "max-len": ["warn", 150],
         "max-statements-per-line": ["warn", {max: 1}],
         semi: ["error", "always"],
-        "comma-dangle": ["warn"],
+        "comma-dangle": ["off"],
         "no-multiple-empty-lines": "off",
         indent: ["warn", 4, {SwitchCase: 1}],
 

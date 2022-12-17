@@ -18,9 +18,6 @@ const commonConfig = {
         clean: true
     },
     plugins: [
-        new DotenvPlugin({
-            path: ".env"
-        }),
         new HtmlPlugin({
             template: "./src/index.html",
             filename: "index.html",
@@ -98,7 +95,12 @@ const commonConfig = {
 
 
 const prodConfig = {
-    mode: "production"
+    mode: "production",
+    plugins: [
+        new DotenvPlugin({
+            path: ".env.production"
+        })
+    ]
 };
 
 
@@ -106,7 +108,7 @@ const devConfig = {
     mode: "development",
     devtool: "source-map",
     devServer: {
-        port: 5007,
+        port: 3000,
         static: "./dist",
         hot: true,
         watchFiles: [
@@ -115,7 +117,12 @@ const devConfig = {
             "./src/pages/register/index.html",
             "./src/pages/books/index.html"
         ]
-    }
+    },
+    plugins: [
+        new DotenvPlugin({
+            path: ".env"
+        })
+    ]
 };
 
 
