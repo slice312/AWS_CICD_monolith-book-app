@@ -16,7 +16,7 @@ services:
       context: ./client
       dockerfile: Dockerfile
       args:
-        web_api_url: http://localhost/api
+        web_api_url: http://3.112.29.156/api
     container_name: book-app-client
     command: serve dist -p 3000
     restart: unless-stopped
