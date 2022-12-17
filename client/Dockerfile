@@ -12,7 +12,6 @@ ARG web_api_url
 ENV WEB_API_URL=${web_api_url}
 RUN echo "WEB_API_URL=$WEB_API_URL" > .env
 
-
 RUN yarn build
 
 RUN yarn global add serve
