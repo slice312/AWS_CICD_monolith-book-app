@@ -5,32 +5,28 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT || 1717;
+const PORT = process.env.PORT || 8080;
 
 const defaultData = require("./db/defaultData");
 const auth = require("./auth");
 const books = require("./crud");
 const db = require("./db");
 
-const allowHosts = [
-    // "http://localhost:3000",
-    // "http://localhost:3001",
+const allowedHosts = [
+    "http://localhost:3000",
     "http://localhost",
-    "http://client:3000",
-    "http://client:3001",
-    "http://43.207.80.230:80",
+    "http://localhost:80",
     "http://43.207.80.230",
-    "http://43.207.80.230:3000"
+    "http://43.207.80.230:80",
 ];
 
 app.use(cors({
     origin: function(origin, callback){
-        console.log("ORIGIN", origin);
         // allow requests with no origin
         // (like mobile apps or curl requests)
         if (!origin)
             return callback(null, true);
-        if (allowHosts.indexOf(origin) === -1){
+        if (allowedHosts.indexOf(origin) === -1) {
             const msg = "The CORS policy for this site does not " +
                 "allow access from the specified Origin.";
             return callback(new Error(msg), false);

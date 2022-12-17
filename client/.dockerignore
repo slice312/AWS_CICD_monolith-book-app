@@ -1,4 +1,13 @@
+# WebStorm
+.idea/
+
+# dependencies
 node_modules/
+package-lock.json
+yarn.lock
+
 npm-debug.log
 
+# cache
 dist/
+

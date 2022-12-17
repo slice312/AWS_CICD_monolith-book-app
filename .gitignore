@@ -1,8 +1,7 @@
-# npm
-node_modules/
-package-lock.json
-
 # WebStorm
 .idea/
 
-
+# npm
+node_modules/
+package-lock.json
+yarn.lock

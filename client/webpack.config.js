@@ -18,6 +18,9 @@ const commonConfig = {
         clean: true
     },
     plugins: [
+        new DotenvPlugin({
+            path: ".env"
+        }),
         new HtmlPlugin({
             template: "./src/index.html",
             filename: "index.html",
@@ -95,12 +98,7 @@ const commonConfig = {
 
 
 const prodConfig = {
-    mode: "production",
-    plugins: [
-        new DotenvPlugin({
-            path: ".env.production"
-        })
-    ]
+    mode: "production"
 };
 
 
@@ -117,12 +115,7 @@ const devConfig = {
             "./src/pages/register/index.html",
             "./src/pages/books/index.html"
         ]
-    },
-    plugins: [
-        new DotenvPlugin({
-            path: ".env"
-        })
-    ]
+    }
 };
 
 

@@ -3,7 +3,7 @@ services:
   api-server:
     build: ./server
     container_name: book-app-api-server
-    command: npm run start
+    command: yarn start
     restart: unless-stopped  # TODO: че это да
     environment:
       - NODE_ENV=production
@@ -12,9 +12,13 @@ services:
   # TODO: тут проблемы с env переменными, потому что вебпак при билде все process.env заменяет
   #  на значения и в бандле нет обращения к переменным окружения
   client:
-    build: ./client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+      args:
+        web_api_url: http://localhost/api
     container_name: book-app-client
-    command: serve dist -l 3000
+    command: serve dist -p 3000
     restart: unless-stopped
     depends_on:
       - api-server
