@@ -16,8 +16,8 @@ const allowedHosts = [
     "http://localhost:3000",
     "http://localhost",
     "http://localhost:80",
-    "http://43.207.80.230",
-    "http://43.207.80.230:80",
+    "http://3.112.29.156",
+    "http://3.112.29.156:80",
 ];
 
 app.use(cors({
