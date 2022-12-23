@@ -32,11 +32,14 @@ const allowedHosts = [
 const whitelist = ['http://13.231.248.240', 'http://example2.com']
 const corsOptionsDelegate = function (req, callback) {
     let corsOptions;
-    if (whitelist.indexOf(req.header('Origin')) !== -1) {
-        corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
-    } else {
-        corsOptions = { origin: false } // disable CORS for this request
-    }
+    // if (whitelist.indexOf(req.header('Origin')) !== -1) {
+    //     corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+    // } else {
+    //     corsOptions = { origin: false } // disable CORS for this request
+    // }
+
+    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+
     callback(null, corsOptions); // callback expects two parameters: error and options
 }
 
