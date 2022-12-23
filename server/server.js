@@ -33,9 +33,9 @@ app.use(cors({
 }));
 
 
-var whitelist = ['http://13.231.248.240/', 'http://example2.com']
-var corsOptionsDelegate = function (req, callback) {
-    var corsOptions;
+const whitelist = ['http://13.231.248.240', 'http://example2.com']
+const corsOptionsDelegate = function (req, callback) {
+    let corsOptions;
     if (whitelist.indexOf(req.header('Origin')) !== -1) {
         corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
     } else {
