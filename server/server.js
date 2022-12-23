@@ -22,9 +22,11 @@ const allowedHosts = [
     "http://52.198.71.255:80",
 ];
 
-app.use(cors({
-    origin: allowedHosts
-}));
+// app.use(cors({
+//     origin: allowedHosts
+// }));
+
+app.use(cors());
 
 // app.use(cors({
 //     origin: function(origin, callback){
