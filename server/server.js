@@ -22,47 +22,18 @@ const allowedHosts = [
     "http://52.198.71.255:80",
 ];
 
-// app.use(cors({
-//     origin: allowedHosts
-// }));
+
+const whitelist = ['http://13.231.248.240', 'http://example2.com'];
 
 
+app.use(cors());
 
-
-const whitelist = ['http://13.231.248.240', 'http://example2.com']
-const corsOptionsDelegate = function (req, callback) {
-    let corsOptions;
-    // if (whitelist.indexOf(req.header('Origin')) !== -1) {
-    //     corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
-    // } else {
-    //     corsOptions = { origin: false } // disable CORS for this request
-    // }
-
-    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
-
-    callback(null, corsOptions); // callback expects two parameters: error and options
-}
-
-// app.use(cors({
-//     origin: function(origin, callback){
-//         // allow requests with no origin
-//         // (like mobile apps or curl requests)
-//         if (!origin)
-//             return callback(null, true);
-//         if (allowedHosts.indexOf(origin) === -1) {
-//             const msg = "The CORS policy for this site does not " +
-//                 "allow access from the specified Origin.";
-//             return callback(new Error(msg), false);
-//         }
-//         return callback(null, true);
-//     }
-// }));
 db.defaults(defaultData).write();
 
-app.use(express.json()); 
+app.use(express.json());
 
 app.get("/me", auth.me);
-app.post("/login", cors(corsOptionsDelegate), auth.login);
+app.post("/login", auth.login);
 app.post("/signin", auth.signin);
 
 app.get("/books", books.getAll);
