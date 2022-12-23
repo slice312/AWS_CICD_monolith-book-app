@@ -12,19 +12,6 @@ const auth = require("./auth");
 const books = require("./crud");
 const db = require("./db");
 
-const allowedHosts = [
-    "http://localhost:3000",
-    "http://localhost",
-    "http://localhost:80",
-    "http://3.112.29.156",
-    "http://3.112.29.156:80",
-    "http://52.198.71.255",
-    "http://52.198.71.255:80",
-];
-
-
-const whitelist = ['http://13.231.248.240', 'http://example2.com'];
-
 
 app.use(cors());
 
