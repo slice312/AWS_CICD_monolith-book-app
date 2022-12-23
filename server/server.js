@@ -26,9 +26,23 @@ const allowedHosts = [
 //     origin: allowedHosts
 // }));
 
+
+app.options('*', cors())
 app.use(cors({
     origin: "*"
 }));
+
+
+var whitelist = ['http://13.231.248.240/', 'http://example2.com']
+var corsOptionsDelegate = function (req, callback) {
+    var corsOptions;
+    if (whitelist.indexOf(req.header('Origin')) !== -1) {
+        corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+    } else {
+        corsOptions = { origin: false } // disable CORS for this request
+    }
+    callback(null, corsOptions) // callback expects two parameters: error and options
+}
 
 // app.use(cors({
 //     origin: function(origin, callback){
