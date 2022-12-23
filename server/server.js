@@ -27,10 +27,6 @@ const allowedHosts = [
 // }));
 
 
-app.options('*', cors())
-app.use(cors({
-    origin: "*"
-}));
 
 
 const whitelist = ['http://13.231.248.240', 'http://example2.com']
@@ -41,7 +37,7 @@ const corsOptionsDelegate = function (req, callback) {
     } else {
         corsOptions = { origin: false } // disable CORS for this request
     }
-    callback(null, corsOptions) // callback expects two parameters: error and options
+    callback(null, corsOptions); // callback expects two parameters: error and options
 }
 
 // app.use(cors({
@@ -63,7 +59,7 @@ db.defaults(defaultData).write();
 app.use(express.json()); 
 
 app.get("/me", auth.me);
-app.post("/login", auth.login);
+app.post("/login", cors(corsOptionsDelegate), auth.login);
 app.post("/signin", auth.signin);
 
 app.get("/books", books.getAll);
