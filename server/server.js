@@ -26,7 +26,9 @@ const allowedHosts = [
 //     origin: allowedHosts
 // }));
 
-app.use(cors());
+app.use(cors({
+    origin: "*"
+}));
 
 // app.use(cors({
 //     origin: function(origin, callback){
