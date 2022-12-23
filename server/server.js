@@ -18,6 +18,8 @@ const allowedHosts = [
     "http://localhost:80",
     "http://3.112.29.156",
     "http://3.112.29.156:80",
+    "http://52.198.71.255",
+    "http://52.198.71.255:80",
 ];
 
 app.use(cors({
@@ -26,11 +28,11 @@ app.use(cors({
         // (like mobile apps or curl requests)
         if (!origin)
             return callback(null, true);
-        // if (allowedHosts.indexOf(origin) === -1) {
-        //     const msg = "The CORS policy for this site does not " +
-        //         "allow access from the specified Origin.";
-        //     return callback(new Error(msg), false);
-        // }
+        if (allowedHosts.indexOf(origin) === -1) {
+            const msg = "The CORS policy for this site does not " +
+                "allow access from the specified Origin.";
+            return callback(new Error(msg), false);
+        }
         return callback(null, true);
     }
 }));
