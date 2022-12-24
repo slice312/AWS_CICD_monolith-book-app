@@ -19,15 +19,23 @@ db.defaults(defaultData).write();
 
 app.use(express.json());
 
-app.get("/me", auth.me);
-app.post("/login", auth.login);
-app.post("/signin", auth.signin);
+app.use((req, res, next) => {
+    console.log("----------------------GLOBAL", req.originalUrl);
+    next();
+});
 
-app.get("/books", books.getAll);
-app.get("/books/:id", books.getItem);
-app.post("/books/create", books.createNew);
-app.put("/books/update/:id", books.updateItem);
-app.delete("/books/delete/:id", books.deleteItem);
+const router = express.Router();
+router.get("/me", auth.me);
+router.post("/login", auth.login);
+router.post("/signin", auth.signin);
+
+router.get("/books", books.getAll);
+router.get("/books/:id", books.getItem);
+router.post("/books/create", books.createNew);
+router.put("/books/update/:id", books.updateItem);
+router.delete("/books/delete/:id", books.deleteItem);
+
+app.use("/api", router);
 
 console.log(`Running ${process.env.NODE_ENV} environment`);
 app.listen(PORT, () => console.log(`API server listening at http://localhost:${PORT}`));
