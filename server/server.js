@@ -19,10 +19,6 @@ db.defaults(defaultData).write();
 
 app.use(express.json());
 
-app.use((req, res, next) => {
-    console.log("----------------------GLOBAL", req.originalUrl);
-    next();
-});
 
 const router = express.Router();
 router.get("/me", auth.me);
