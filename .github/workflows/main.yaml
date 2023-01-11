@@ -1,5 +1,5 @@
+name: Deploy to AWS EC2
 
-name: CI-CD
 on:
   push:
     branches:
@@ -17,8 +17,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: easingthemes/ssh-deploy@main
-      - uses: appleboy/ssh-action@master
+      - uses: easingthemes/ssh-deploy@v3.1.0
+      - uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.HOST_DNS }}   # IP EC2  (3.113.31.75)
           username: ${{ secrets.USERNAME }}  # ubuntu user (ubuntu по дефолту в инстанце EC2)
@@ -27,5 +27,3 @@ jobs:
           script: |
             cd ${{ secrets.TARGET_DIR }}
             sudo docker compose up --build -d
-#            chmod 700 buildscript.sh
-#            sudo bash buildscript.sh
