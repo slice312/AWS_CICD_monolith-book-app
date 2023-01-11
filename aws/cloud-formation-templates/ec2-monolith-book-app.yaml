@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: EC2 Instance
+
+
+Parameters:
+  EC2KeyPairName: # AWS does not provide creation of KeyPair from a template
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: name of the key pair to ssh into the instance
+
+Resources:
+  EC2BookApp:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0590f3a1742b17914  # AMI (Amazon Machine Image) - id OS (ubuntu ami-0590f3a1742b17914)
+      InstanceType: t2.micro
+      KeyName: !Ref EC2KeyPairName
+      SecurityGroups:
+        - !Ref SecurityGroupEC2BookApp
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          echo "------------------------------------- DOCKER INSTALL START -------------------------------------"
+          dpkg --purge --force-all docker docker-engine docker.io containerd runc
+          apt update
+          apt install -y \
+            ca-certificates \
+            curl \
+            gnupg \
+            lsb-release
+          
+          mkdir -p /etc/apt/keyrings
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+          
+          echo \
+            "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+            $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null\
+          
+          apt update
+          apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+          echo "------------------------------------- DOCKER INSTALL END -------------------------------------"
+          
+          sudo -u ubuntu -i << 'EOF'
+          cd ~
+          sudo docker --version > result.txt
+          EOF
+      Tags:
+        - Key: Name
+          Value: book-app-monolith
+
+
+  SecurityGroupEC2BookApp:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: BookAppMonolith
+      GroupDescription: Allowing SSH, HTTP, HTTPS from everywhere
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: sg-book-app-monolith
